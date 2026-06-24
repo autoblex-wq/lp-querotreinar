@@ -1123,3 +1123,44 @@ header h1 { margin-top: 10vw; }
 /* Hero: raise logo + info a bit more */
 header h1 { margin-top: 6vw; }
 @media only screen and (max-width: 700px) { header h1 { margin-top: 20vw; } }
+
+/* =========================================================================
+   QUERO TREINAR — match hero black to imagem 1 (#05050c), roomier destaques,
+   full-bleed mobile hero image
+   ========================================================================= */
+
+/* Hero black recolored to the app image's background (#05050c) -> no seam */
+header {
+  background-color: #05050c;
+  background-image:
+    linear-gradient(to bottom, rgba(5, 5, 12, 0) 28%, rgba(5, 5, 12, 0.72) 66%, #05050c 96%),
+    url(/images/hero-bg-desktop.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center top;
+  background-size: 100% 64vw, 100% auto;
+}
+header .screenshots img { width: 100%; max-width: none; height: auto; border-radius: 0; box-shadow: none; margin-left: 0; }
+@media only screen and (max-width: 700px) {
+  header {
+    background-image:
+      linear-gradient(to bottom, rgba(5, 5, 12, 0) 30%, rgba(5, 5, 12, 0.82) 70%, #05050c 100%),
+      url(/images/hero-bg-mobile.png);
+    background-size: 100% 150vw, 100% auto;
+  }
+  header .screenshots { margin: 26px 0 0 0; }
+  header .screenshots img { width: 100vw; max-width: none; margin-left: 0; }
+}
+
+/* Destaques: roomier text + wider rows on desktop; clean stack on mobile */
+@media (min-width: 701px) {
+  #features ul { max-width: 1240px; }
+  #features ul li { padding: 0 48px; gap: 56px; margin-bottom: 64px; align-items: center; justify-content: center; }
+  #features ul li img { min-width: 0; width: 48%; max-width: 560px; }
+  #features ul li div { margin: 0; width: auto; min-width: 0; flex: 1; max-width: 520px; }
+  #features ul li.right div { margin: 0; }
+}
+@media (max-width: 700px) {
+  #features ul li { gap: 18px; padding: 0 24px; margin-bottom: 40px; }
+  #features ul li img { width: 100%; max-width: 460px; min-width: 0; }
+  #features ul li div { width: 100%; max-width: 100%; margin: 0; }
+}
