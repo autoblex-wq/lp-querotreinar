@@ -1019,3 +1019,28 @@ header {
 header .screenshots img { width: 100%; max-width: 1000px; height: auto; border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
 #mastodon > img { border-radius: 16px; box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45); }
 #features ul li img { border-radius: 14px; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.4); }
+
+/* =========================================================================
+   QUERO TREINAR — hero logo image (replaces the gradient text wordmark)
+   ========================================================================= */
+header h1 {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: initial;
+  font-size: 0;
+  width: auto;
+  height: auto;
+  margin: 22vw auto 18px auto;
+  padding: 0 20px;
+}
+header h1 img {
+  display: block;
+  width: 460px;
+  max-width: 82vw;
+  height: auto;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 700px) {
+  header h1 { margin-top: 42vw; }
+  header h1 img { width: 300px; }
+}

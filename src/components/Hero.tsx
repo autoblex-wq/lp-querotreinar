@@ -1,8 +1,10 @@
-// <header> — hero. Wordmark "Quero Treinar" rendered as gradient text via CSS.
+// <header> — hero. Brand logo (transparent PNG) over the gym background.
 export function Hero() {
   return (
     <header>
-      <h1>Quero Treinar</h1>
+      <h1>
+        <img src="/images/logo-quero-treinar.png" alt="Quero Treinar" />
+      </h1>
       <h2>Saúde manda em tudo.</h2>
       <p>
         O app de treino e dieta com a sua marca. Do primeiro treino ao
