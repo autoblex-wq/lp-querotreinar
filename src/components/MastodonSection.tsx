@@ -7,7 +7,7 @@ export function MastodonSection() {
         alt="Tela de criação de treino do Quero Treinar"
       />
       <div>
-        <h3>Um app só. Do primeiro treino ao pagamento.</h3>
+        <h3>Montagem de treinos.</h3>
         <p>
           Pare de juntar planilha, PDF e WhatsApp. O Quero Treinar reúne treinos,
           dietas, anamnese, evolução, chat e cobrança num só lugar — entregue num
