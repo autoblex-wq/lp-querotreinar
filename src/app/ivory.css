@@ -1,0 +1,993 @@
+/* =========================================================================
+   Ivory clone base — ported from tapbots.com (reset + stylesheet +
+   globalfooter). Paths img/ -> /images/, content-box reset, -webkit- compat.
+   Unlayered so it overrides Tailwind preflight.
+   ========================================================================= */
+
+/* --- Reset (match original YUI reset + default content-box) --- */
+*, *::before, *::after { box-sizing: content-box; }
+body, div, dl, dt, dd, ul, ol, li,
+h1, h2, h3, h4, h5, h6, p, blockquote, figure, fieldset { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img, fieldset { border: 0; max-width: none; height: auto; }
+a { text-decoration: none; }
+body { background: #1A1A1A; }
+
+/* --- stylesheet.css (paths rewritten) --- */
+/* Hacks and Mixins */
+/* Variables */
+/* Styles */
+html {
+  font-family: -apple-system, "helvetica-neue", helvetica, arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.5em;
+  background: #1A1A1A;
+  color: #fff;
+}
+html a {
+  color: #BA94FF;
+}
+
+.download .appstore {
+  font-size: 24px;
+  line-height: 1.4em;
+  margin: 0 auto 20px auto;
+}
+.download .appstore a {
+  margin: 0 auto;
+  display: block;
+  width: 412px;
+  height: 128px;
+  text-indent: -8000px;
+  background: url(/images/button_download.png) no-repeat 0 0;
+  background-size: 100% auto;
+  transition: 0.15s ease-out;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  .download .appstore a {
+    background-image: url("/images/button_download@2x.png");
+    background-size: 100% auto;
+  }
+}
+@media only screen and (max-width : 500px) {
+  .download .appstore a {
+    width: 330px;
+    height: 102px;
+  }
+}
+.download .appstore a:hover {
+  transform: scale(105%);
+}
+.download .appstore a:active {
+  transform: translateY(2px);
+}
+.download dl {
+  font-size: 18px;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+}
+.download dl dt {
+  font-weight: 600;
+}
+.download dl dd {
+  font-weight: 300;
+  color: #ACACAC;
+}
+.download .help {
+  font-size: 18px;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+}
+.download .help a {
+  text-decoration: none;
+  font-weight: 500;
+  background: #301E4F;
+  display: inline-block;
+  border-radius: 40px;
+  padding: 12px 20px 12px 15px;
+  transition: 0.15s ease-out;
+}
+.download .help a svg {
+  vertical-align: middle;
+  margin-right: 5px;
+  margin-top: -3px;
+}
+.download .help a svg path {
+  fill: #BA94FF;
+}
+.download .help a:hover {
+  transform: scale(105%);
+}
+.download .help a:active {
+  transform: translateY(2px);
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: #05050B url(/images/background_header.jpg) no-repeat 50% 0;
+  background-size: 100% auto;
+  background-size: 100%;
+  position: relative;
+  z-index: 5;
+  padding-bottom: 10vw;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  header {
+    background-image: url("/images/background_header@2x.jpg");
+    background-size: 100% auto;
+  }
+}
+@media only screen and (max-width : 500px) {
+  header {
+    background-size: 140% auto;
+  }
+}
+header h1 {
+  background: linear-gradient(to bottom, #E7E6FF, #8A89AF);
+  -webkit-mask-image: url(/images/logo_ivory.svg);
+  mask-image: url(/images/logo_ivory.svg);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  width: 386px;
+  height: 125px;
+  text-indent: -8000px;
+  margin: 50vw auto 40px auto;
+}
+@media only screen and (max-width : 500px) {
+  header h1 {
+    width: 309px;
+    height: 100px;
+    margin-top: 70vw;
+  }
+}
+header h2 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1em;
+  margin-bottom: 40px;
+  padding: 0 30px;
+}
+@media only screen and (max-width : 500px) {
+  header h2 {
+    font-size: 32px;
+  }
+}
+header p {
+  color: #CDD4F8;
+  font-size: 24px;
+  line-height: 1.4em;
+  margin: 0 auto 1.4em auto;
+  padding: 0 30px;
+  font-weight: 300;
+  max-width: 1000px;
+}
+@media only screen and (max-width : 500px) {
+  header p {
+    font-size: 21px;
+  }
+}
+header p strong {
+  font-weight: 600;
+  background-image: linear-gradient(to bottom right, #6CB0FF, #F747FF);
+  color: transparent;
+  background-clip: text;
+}
+header .screenshots {
+  display: block;
+  margin: 40px 0 60px 0;
+  width: 100%;
+  overflow: hidden;
+  height: auto;
+}
+header .screenshots img {
+  width: 100vw;
+}
+@media only screen and (max-width : 700px) {
+  header .screenshots img {
+    width: 140vw;
+    margin-left: -20vw;
+  }
+}
+
+#mastodon {
+  margin-top: -5vw;
+  padding: 15vw 0 10vw 0;
+  background: #7047ba url(/images/background_mastodon.jpg) 0 0;
+  background-size: 700px 693px;
+  position: relative;
+  z-index: 4;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  #mastodon {
+    background-image: url("/images/background_mastodon@2x.jpg");
+    background-size: 700px 693px;
+  }
+}
+@media only screen and (max-width : 700px) {
+  #mastodon {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+#mastodon > img {
+  width: 50vw;
+  max-width: 500px;
+}
+@media only screen and (max-width : 700px) {
+  #mastodon > img {
+    width: 90vw;
+  }
+}
+#mastodon div {
+  max-width: 500px;
+  margin: 0 60px 0 30px;
+}
+@media only screen and (max-width : 700px) {
+  #mastodon div {
+    margin-right: 30px;
+    max-width: 100%;
+  }
+}
+#mastodon div h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1em;
+  margin-bottom: 0.6em;
+}
+#mastodon div p {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+  color: #DECCFF;
+}
+#mastodon div .button a {
+  display: inline-block;
+  border-radius: 40px;
+  background: linear-gradient(to bottom, #fff, #D9C3FF);
+  padding: 10px 20px;
+  font-size: 21px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #4C278E;
+  transition: 0.15s ease-out;
+}
+#mastodon div .button a:hover {
+  transform: scale(105%);
+}
+#mastodon div .button a:active {
+  transform: translateY(2px);
+}
+
+#features {
+  margin-top: -5vw;
+  background: #1A1A1A url(/images/background_features.jpg) no-repeat 50% 50%;
+  background-size: 150% auto;
+  padding: 15vw 0 10vw 0;
+  position: relative;
+  z-index: 3;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  #features {
+    background-image: url("/images/background_features@2x.jpg");
+    background-size: 100% auto;
+  }
+}
+@media only screen and (max-width : 700px) {
+  #features {
+    background-size: 240% auto;
+  }
+}
+#features h3 {
+  font-size: 28px;
+  line-height: 1.1em;
+  margin-bottom: 0.6em;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: #1A1A1A 0 0 10px;
+}
+#features p {
+  font-size: 21px;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+  font-weight: 300;
+  color: #B3B3B3;
+  text-shadow: #1A1A1A 0 0 10px;
+}
+#features ul {
+  max-width: 900px;
+  margin: 0 auto;
+}
+#features ul li {
+  display: flex;
+  margin-bottom: 20px;
+  padding: 0 40px;
+  justify-content: center;
+  align-items: center;
+}
+@media only screen and (max-width : 700px) {
+  #features ul li {
+    flex-flow: column;
+  }
+}
+#features ul li img {
+  min-width: 350px;
+}
+@media only screen and (max-width : 700px) {
+  #features ul li img {
+    min-width: 0;
+    width: 90vw;
+    height: auto;
+  }
+}
+@media only screen and (max-width : 700px) {
+  #features ul li img.timelines {
+    width: 50vw;
+  }
+}
+#features ul li div {
+  margin-left: 20px;
+  min-width: 100px;
+  width: 250px;
+}
+@media only screen and (max-width : 700px) {
+  #features ul li div {
+    width: auto;
+    margin: 0;
+    text-align: center;
+  }
+}
+#features ul li.right {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+@media only screen and (max-width : 700px) {
+  #features ul li.right {
+    flex-flow: column;
+    text-align: center;
+  }
+}
+#features ul li.right div {
+  margin-right: 20px;
+}
+
+#devices {
+  margin-top: -5vw;
+  padding: 15vw 0 10vw 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  position: relative;
+  z-index: 2;
+  background: #484848;
+}
+#devices ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+@media only screen and (max-width : 500px) {
+  #devices ul li {
+    flex-flow: column;
+  }
+}
+#devices ul li img {
+  min-width: 450px;
+}
+@media only screen and (max-width : 700px) {
+  #devices ul li img {
+    min-width: 300px;
+  }
+}
+@media only screen and (max-width : 500px) {
+  #devices ul li img {
+    min-width: 0;
+    width: 95vw;
+    align-self: flex-start;
+    margin-bottom: 20px;
+  }
+}
+#devices ul li div {
+  margin: 0 40px;
+  max-width: 500px;
+}
+#devices ul li.right {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+@media only screen and (max-width : 500px) {
+  #devices ul li.right {
+    flex-flow: column;
+    text-align: left;
+  }
+}
+#devices ul li.right div {
+  position: relative;
+  z-index: 3;
+}
+#devices ul li.right img {
+  margin-left: -90px;
+}
+@media only screen and (max-width : 700px) {
+  #devices ul li.right img {
+    margin-left: -50px;
+  }
+}
+@media only screen and (max-width : 500px) {
+  #devices ul li.right img {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+}
+#devices h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1em;
+  margin-bottom: 0.6em;
+}
+@media only screen and (max-width : 700px) {
+  #devices h3 {
+    font-size: 21px;
+  }
+}
+@media only screen and (max-width : 500px) {
+  #devices h3 {
+    font-size: 23px;
+  }
+}
+#devices p {
+  font-size: 21px;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+  font-weight: 300;
+  color: #C3C3C3;
+}
+@media only screen and (max-width : 700px) {
+  #devices p {
+    font-size: 17px;
+  }
+}
+@media only screen and (max-width : 500px) {
+  #devices p {
+    font-size: 21px;
+  }
+}
+
+#themes {
+  background: #1A1A1A url(/images/background_themes.jpg) no-repeat 50% 100%;
+  background-size: 100% auto;
+  margin-top: -5vw;
+  padding: 15vw 0 84vw 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  position: relative;
+  z-index: 1;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  #themes {
+    background-image: url("/images/background_themes@2x.jpg");
+    background-size: 100% auto;
+  }
+}
+@media only screen and (max-width : 500px) {
+  #themes {
+    background-size: 135% auto;
+    padding-bottom: 110vw;
+  }
+}
+#themes div {
+  margin: 0 auto;
+  padding: 0 20px;
+  max-width: 640px;
+  text-align: center;
+}
+#themes div img {
+  width: 100%;
+  max-width: 700px;
+}
+#themes h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.1em;
+  margin-bottom: 0.6em;
+}
+#themes p {
+  font-size: 21px;
+  line-height: 1.4em;
+  margin-bottom: 1.4em;
+  font-weight: 300;
+  color: #C3C3C3;
+}
+
+#more {
+  background: #2c2c2c url(/images/background_more.jpg) no-repeat 50% 0;
+  background-size: 100% auto;
+  margin-top: -5vw;
+  padding: 15vw 0 10vw 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  position: relative;
+  z-index: 0;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  #more {
+    background-image: url("/images/background_more@2x.jpg");
+    background-size: 100% auto;
+  }
+}
+#more h3 {
+  font-size: 32px;
+  line-height: 1.1em;
+  font-weight: 600;
+  width: 75vw;
+  margin: 0 auto 1.5em auto;
+  color: #74EC5A;
+}
+@media only screen and (max-width : 500px) {
+  #more h3 {
+    width: 90vw;
+  }
+}
+#more h4 {
+  font-size: 24px;
+  line-height: 1.1em;
+  font-weight: 600;
+  color: #fff;
+}
+@media only screen and (max-width : 700px) {
+  #more h4 {
+    font-size: 21px;
+  }
+}
+#more p {
+  font-size: 18px;
+  line-height: 1.4em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+}
+@media only screen and (max-width : 700px) {
+  #more p {
+    font-size: 16px;
+  }
+}
+#more ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 75vw;
+}
+@media only screen and (max-width : 500px) {
+  #more ul {
+    flex-flow: column;
+    width: 90vw;
+  }
+}
+#more ul li {
+  width: 35vw;
+  margin-bottom: 1.5em;
+  display: flex;
+  flex-wrap: nowrap;
+}
+@media only screen and (max-width : 500px) {
+  #more ul li {
+    width: auto;
+  }
+}
+#more ul li img {
+  width: 36px;
+  height: 36px;
+  display: block;
+  margin-right: 10px;
+}
+
+footer {
+  margin-top: -5vw;
+  text-align: center;
+  padding: 15vw 0 80px 0;
+  background: url(/images/background_footer.jpg) no-repeat 50% 100%;
+  background-size: 120% auto;
+}
+@media (min--moz-device-pixel-ratio: 1.3), (-o-min-device-pixel-ratio: 2.6/2), (-webkit-min-device-pixel-ratio: 1.3), (min-device-pixel-ratio: 1.3), (min-resolution: 1.3dppx) {
+  footer {
+    background-image: url("/images/background_footer@2x.jpg");
+    background-size: 120% auto;
+  }
+}
+@media only screen and (max-width : 700px) {
+  footer {
+    background-size: 170% auto;
+  }
+}
+@media only screen and (max-width : 500px) {
+  footer {
+    background-size: 200% auto;
+    padding-bottom: 30px;
+  }
+}
+footer h3 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 1.5em;
+  color: #9466e7;
+}
+@media only screen and (max-width : 700px) {
+  footer h3 {
+    font-size: 27px;
+  }
+}
+footer #quotes {
+  height: 60vw;
+  position: relative;
+  display: flex;
+}
+@media only screen and (max-width : 700px) {
+  footer #quotes {
+    height: 90vw;
+  }
+}
+footer #quotes li {
+  background: rgba(35, 35, 35, 0.8);
+  backdrop-filter: blur(10px);
+  max-width: 640px;
+  padding: 30px;
+  margin: 0 auto;
+  border-radius: 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  animation: fade 36s ease-in-out infinite forwards;
+}
+@media only screen and (max-width : 700px) {
+  footer #quotes li {
+    margin: 0 20px;
+  }
+}
+footer #quotes li blockquote {
+  font-size: 36px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.2em;
+  margin-bottom: 0.8em;
+}
+@media only screen and (max-width : 700px) {
+  footer #quotes li blockquote {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width : 500px) {
+  footer #quotes li blockquote {
+    font-size: 24px;
+  }
+}
+footer #quotes li blockquote a {
+  text-decoration: none;
+  color: #fff;
+}
+footer #quotes li p {
+  font-weight: 600;
+  color: #C3C3C3;
+  line-height: 1.2em;
+}
+@media only screen and (max-width : 700px) {
+  footer #quotes li p {
+    font-size: 16px;
+  }
+}
+footer #quotes li p img {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-top: -3px;
+  margin-right: 5px;
+  border-radius: 40px;
+}
+footer #quotes li.two {
+  animation-delay: 9s;
+}
+footer #quotes li.three {
+  animation-delay: 18s;
+}
+footer #quotes li.four {
+  animation-delay: 27s;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+    z-index: 1;
+  }
+  1% {
+    opacity: 1;
+    transform: translateY(-10px);
+    z-index: 8;
+  }
+  24% {
+    opacity: 1;
+    transform: translateY(-10px);
+    z-index: 8;
+  }
+  25% {
+    transform: translateY(0);
+    opacity: 0;
+    z-index: 1;
+  }
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
+
+/* --- globalfooter.css --- */
+#globalfooter {
+  font-size: 20px;
+  line-height: 1.5em;
+  background: #111;
+  text-align: center;
+  padding: 4em 0 0 0;
+}
+@media only screen and (max-width : 700px) {
+  #globalfooter {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width : 414px) {
+  #globalfooter {
+    font-size: 20px;
+  }
+}
+@media only screen and (max-width : 414px) {
+  #globalfooter {
+    padding-bottom: 0;
+  }
+}
+#globalfooter .wrap {
+  margin: 0 auto;
+}
+#globalfooter a.logo {
+  display: inline-block;
+  margin-bottom: 1.3em;
+  height: auto;
+  line-height: 0em;
+  padding: 0;
+}
+#globalfooter svg {
+  margin: 0;
+  width: auto;
+  height: 4em;
+  display: block;
+  padding: 0;
+}
+#globalfooter #footer-logo path {
+  fill: color(#FF4C4C);
+  fill: color(display-p3 1 0.301 0.301);
+}
+#globalfooter h2 {
+  font-size: 1em;
+  line-height: 1.7em;
+  font-weight: 400;
+  color: #CCC;
+  max-width: 59.5vw;
+  margin: 0 auto 1.7em auto;
+  padding: 0;
+}
+@media only screen and (max-width : 414px) {
+  #globalfooter h2 {
+    max-width: none;
+  }
+}
+#globalfooter h3 {
+  color: #CCC;
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.7em;
+  margin-bottom: 0;
+}
+@media only screen and (max-width : 414px) {
+  #globalfooter h3 {
+    border-top: 1px solid #333;
+    padding-top: 2em;
+  }
+}
+#globalfooter p {
+  font-size: 1em;
+  line-height: 1.8em;
+  color: #666;
+  text-transform: uppercase;
+}
+#globalfooter a {
+  color: #FF4C4C;
+  color: color(display-p3 1 0.302 0.302);
+  text-decoration: none;
+  transition: all 0.1s ease-in-out;
+  display: inline-block;
+}
+#globalfooter a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+#globalfooter a:active {
+  transform: scale(1);
+}
+#globalfooter ul {
+  display: flex;
+  justify-content: space-around;
+  text-align: left;
+  margin-bottom: 1.6em;
+}
+@media only screen and (max-width : 700px) {
+  #globalfooter ul {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+#globalfooter ul li {
+  color: #666;
+  line-height: 1.7em;
+}
+#globalfooter ul li ul {
+  display: block;
+}
+@media only screen and (max-width : 700px) {
+  #globalfooter ul li ul {
+    margin-bottom: 2em;
+  }
+}
+#globalfooter ul li ul a {
+  display: inline-block;
+  text-decoration: none;
+  color: #999;
+  transition: all 0.1s ease-in-out;
+}
+#globalfooter ul li ul a:hover {
+  color: #FFF;
+  transform: scale(1.1);
+}
+#globalfooter ul li ul a:active {
+  transform: scale(1);
+}
+#globalfooter ul + ul {
+  justify-content: center;
+}
+@media only screen and (max-width : 414px) {
+  #globalfooter ul + ul {
+    margin-top: 2em;
+  }
+}
+#globalfooter ul + ul li {
+  margin: 0 1em;
+  font-weight: 600;
+}
+#globalfooter ul + ul li a {
+  display: inline-block;
+  transition: all 0.1s ease-in-out;
+}
+#globalfooter ul + ul li a:hover {
+  transform: scale(1.1);
+  color: #fff;
+}
+#globalfooter ul + ul li a:hover svg path {
+  fill: #fff;
+}
+#globalfooter ul + ul li a:active {
+  transform: scale(1);
+}
+#globalfooter ul + ul li img {
+  display: inline-block;
+  width: auto;
+  height: 1.2em;
+  margin-bottom: 0.2vw;
+  vertical-align: middle;
+}
+#globalfooter ul + ul li img path {
+  fill: #FF4C4C;
+  fill: color(display-p3 1 0.301 0.301);
+}
+#globalfooter .copyright {
+  font-size: 0.8em;
+  padding-bottom: 20px;
+}
+
+/*# sourceMappingURL=globalfooter.css.map */
+
+/* --- cross-browser compat overrides (Chromium/WebKit) --- */
+header h1 { -webkit-mask-repeat: no-repeat; -webkit-mask-size: contain; -webkit-mask-position: center; }
+header p strong { -webkit-background-clip: text; }
+
+/* =========================================================================
+   QUERO TREINAR adaptations (override the ported Ivory rules above).
+   ========================================================================= */
+
+/* Hero wordmark: replace the Ivory SVG-mask with gradient text */
+header h1 {
+  -webkit-mask-image: none; mask-image: none;
+  -webkit-mask-repeat: initial; -webkit-mask-size: initial; -webkit-mask-position: initial;
+  width: auto; height: auto; text-indent: 0; overflow: visible;
+  font-size: 90px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.02;
+  background: linear-gradient(to bottom, #E7E6FF, #8A89AF);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+  margin: 50vw auto 16px auto; padding: 0 20px;
+}
+@media only screen and (max-width: 700px) { header h1 { font-size: 62px; } }
+@media only screen and (max-width: 500px) { header h1 { font-size: 44px; margin-top: 70vw; } }
+
+/* Hero slogan */
+header h2 { margin-top: 0; margin-bottom: 26px; }
+
+/* Buttons (shared) */
+.actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; margin: 6px auto 16px auto; padding: 0 20px; }
+.btn {
+  display: inline-block; border-radius: 40px; padding: 15px 30px; font-size: 20px; font-weight: 600;
+  text-decoration: none; cursor: pointer; transition: 0.15s ease-out; border: 1.5px solid transparent; line-height: 1;
+}
+.btn-primary { background: linear-gradient(to bottom, #C6A8FF, #9A72F0); color: #fff; }
+.btn-secondary { background: rgba(255, 255, 255, 0.06); border-color: rgba(255, 255, 255, 0.38); color: #fff; }
+.btn:hover { transform: scale(1.04); }
+.btn-secondary:hover { border-color: rgba(255, 255, 255, 0.75); background: rgba(255, 255, 255, 0.12); }
+.btn:active { transform: translateY(2px); }
+
+/* Hero support line */
+.support { color: #9AA0C8; font-size: 16px; font-weight: 400; text-align: center; margin: 0 auto; padding: 0 20px; }
+
+/* Image placeholders (swap your real images in later) */
+.ph {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  border: 2px dashed rgba(255, 255, 255, 0.3); border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05); color: rgba(255, 255, 255, 0.6);
+  font-size: 14px; font-weight: 500; letter-spacing: 0.03em; box-sizing: border-box; padding: 12px;
+}
+
+/* FAIXA (#mastodon): placeholder where the diagram was */
+#mastodon > .ph { width: 50vw; max-width: 500px; aspect-ratio: 530 / 720; align-self: center; }
+@media only screen and (max-width: 700px) { #mastodon > .ph { width: 90vw; } }
+
+/* DESTAQUES (#features): placeholder sizing */
+#features ul li .ph { min-width: 350px; width: 350px; aspect-ratio: 4 / 3; }
+@media only screen and (max-width: 700px) { #features ul li .ph { min-width: 0; width: 90vw; } }
+
+/* PARA QUEM E (#devices): section title, persona placeholders + bullets */
+#devices .section-title { text-align: center; font-size: 32px; font-weight: 600; color: #fff; margin: 0 auto 1.4em auto; padding: 0 20px; }
+@media only screen and (max-width: 500px) { #devices .section-title { font-size: 26px; } }
+#devices ul li .ph { min-width: 450px; width: 450px; aspect-ratio: 1 / 1; }
+@media only screen and (max-width: 700px) { #devices ul li .ph { min-width: 300px; width: 300px; } }
+@media only screen and (max-width: 500px) { #devices ul li .ph { min-width: 0; width: 95vw; margin-bottom: 20px; } }
+#devices ul li.right { text-align: left; }
+#devices ul li { margin-bottom: 40px; }
+#devices .tagline { font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 0.8em; }
+#devices .bullets { margin-top: 0.4em; }
+#devices .bullets li { font-size: 18px; line-height: 1.5em; color: #C3C3C3; font-weight: 300; margin-bottom: 0.5em; padding-left: 18px; position: relative; }
+#devices .bullets li::before { content: ""; position: absolute; left: 0; top: 0.62em; width: 7px; height: 7px; border-radius: 50%; background: #BA94FF; }
+
+/* MARCA PROPRIA (#themes): placeholder + button */
+#themes div .ph { width: 100%; max-width: 520px; aspect-ratio: 16 / 10; margin: 0 auto 1.4em auto; }
+#themes .button { margin-top: 1.4em; }
+
+/* RECURSOS (#more): subtitle + apoio + icon placeholders */
+#more h3 { margin-bottom: 0.3em; }
+#more .subtitle { font-size: 24px; font-weight: 600; color: #fff; width: 75vw; margin: 0 auto 0.45em auto; text-align: center; line-height: 1.2em; }
+#more .apoio { font-size: 18px; font-weight: 300; color: rgba(255, 255, 255, 0.62); width: 75vw; max-width: 760px; margin: 0 auto 2.4em auto; text-align: center; line-height: 1.5em; }
+@media only screen and (max-width: 500px) { #more .subtitle, #more .apoio { width: 90vw; } }
+#more ul li .ph { width: 36px; height: 36px; min-width: 36px; border-radius: 9px; margin-right: 10px; flex-shrink: 0; font-size: 0; padding: 0; }
+
+/* DEPOIMENTOS (footer): avatar placeholder + CTA final */
+footer #quotes li p .ph { width: 30px; height: 30px; min-width: 30px; border-radius: 50%; display: inline-flex; vertical-align: middle; margin-top: -3px; margin-right: 8px; padding: 0; font-size: 0; }
+.final-cta { margin-top: 10px; }
+.final-cta .cta-title { font-size: 36px; font-weight: 700; color: #fff; line-height: 1.1em; margin-bottom: 0.5em; padding: 0 20px; }
+@media only screen and (max-width: 500px) { .final-cta .cta-title { font-size: 28px; } }
+.final-cta .cta-text { font-size: 20px; font-weight: 300; color: #CDD4F8; max-width: 620px; margin: 0 auto 1.3em auto; padding: 0 20px; line-height: 1.45em; }
+
+/* GLOBAL FOOTER rebrand: text brandmark + purple accent (de-Tapbots) */
+#globalfooter a.logo .brandmark {
+  font-size: 30px; font-weight: 800; letter-spacing: -0.01em;
+  background: linear-gradient(to bottom, #E7E6FF, #9A8CD8);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+}
+#globalfooter h2 a { color: #BA94FF; }
+#globalfooter a { color: #BA94FF; }
+#globalfooter ul + ul li a:hover svg path { fill: #fff; }

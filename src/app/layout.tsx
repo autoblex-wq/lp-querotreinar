@@ -1,20 +1,27 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./ivory.css";
 
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  ),
+  title: "Quero Treinar — Saúde manda em tudo",
+  description:
+    "O app de treino e dieta com a sua marca. Do primeiro treino ao pagamento. Para Personal Trainers e Nutricionistas.",
+  keywords: [
+    "app de treino", "app de dieta", "personal trainer", "nutricionista",
+    "treino com vídeo", "dieta TACO", "anamnese", "gamificação", "white label",
+    "app com a sua marca", "pagamentos", "PIX", "acompanhamento",
+  ],
+  openGraph: {
+    title: "Quero Treinar — Saúde manda em tudo",
+    description:
+      "O app de treino e dieta com a sua marca. Para Personal Trainers e Nutricionistas.",
+    siteName: "Quero Treinar",
+    locale: "pt_BR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +30,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="pt-BR">
+      <body>{children}</body>
     </html>
   );
 }
