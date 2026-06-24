@@ -1044,3 +1044,31 @@ header h1 img {
   header h1 { margin-top: 42vw; }
   header h1 img { width: 300px; }
 }
+
+/* =========================================================================
+   QUERO TREINAR — palette tuned to the logo leaf green (#8da164 / #748752)
+   ========================================================================= */
+
+/* Logo a bit higher */
+header h1 { margin-top: 15vw; }
+@media only screen and (max-width: 700px) { header h1 { margin-top: 32vw; } }
+
+/* Hero text: slogan beige, paragraph sage-green */
+header h2 { color: #E8DEC6; }
+header p { color: #AEC487; }
+
+/* Brand accent: purple -> logo leaf green */
+.btn-primary { background: linear-gradient(to bottom, #93AC68, #65783E); color: #fff; }
+html a { color: #A6BE7C; }
+#devices .bullets li::before { background: #8DA164; }
+footer h3 { color: #9DB36F; }
+#globalfooter a, #globalfooter h2 a { color: #9DB36F; }
+#globalfooter a.logo .brandmark {
+  background: linear-gradient(to bottom, #EDE8D6, #B9C79A);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+
+/* imagem 1: full-bleed across the hero section (edge to edge) */
+header .screenshots { margin: 44px 0 0 0; width: 100%; }
+header .screenshots img { width: 100%; max-width: none; height: auto; border-radius: 0; box-shadow: none; }

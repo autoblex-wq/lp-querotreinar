@@ -19,9 +19,6 @@ export function Hero() {
           Ver recursos
         </a>
       </div>
-      <p className="support">
-        iPhone, Android e navegador · 7 dias grátis · sem cartão
-      </p>
       <div className="screenshots">
         <picture>
           <source media="(max-width: 700px)" srcSet="/images/hero-app-mobile.png" />
