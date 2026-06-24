@@ -1164,3 +1164,8 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   #features ul li img { width: 100%; max-width: 460px; min-width: 0; }
   #features ul li div { width: 100%; max-width: 100%; margin: 0; }
 }
+
+/* FAIXA mobile: center the image (keep title/text left-aligned) */
+@media only screen and (max-width: 700px) {
+  #mastodon > img { justify-self: center; }
+}
