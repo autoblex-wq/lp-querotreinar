@@ -991,3 +991,31 @@ footer #quotes li p .ph { width: 30px; height: 30px; min-width: 30px; border-rad
 #globalfooter h2 a { color: #BA94FF; }
 #globalfooter a { color: #BA94FF; }
 #globalfooter ul + ul li a:hover svg path { fill: #fff; }
+
+/* =========================================================================
+   QUERO TREINAR — real images (provided by the user)
+   ========================================================================= */
+
+/* Hero background photo (gym) — replaces the Ivory space scene */
+header {
+  background-color: #0b0b0d;
+  background-image:
+    linear-gradient(to bottom, rgba(11, 11, 13, 0) 28%, rgba(11, 11, 13, 0.72) 66%, #0b0b0d 96%),
+    url(/images/hero-bg-desktop.png);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center top, center top;
+  background-size: 100% 64vw, 100% auto;
+}
+@media only screen and (max-width: 700px) {
+  header {
+    background-image:
+      linear-gradient(to bottom, rgba(11, 11, 13, 0) 30%, rgba(11, 11, 13, 0.8) 70%, #0b0b0d 100%),
+      url(/images/hero-bg-mobile.png);
+    background-size: 100% 150vw, 100% auto;
+  }
+}
+
+/* Real content images: centered, rounded, soft shadow */
+header .screenshots img { width: 100%; max-width: 1000px; height: auto; border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+#mastodon > img { border-radius: 16px; box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45); }
+#features ul li img { border-radius: 14px; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.4); }

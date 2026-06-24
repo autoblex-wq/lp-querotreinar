@@ -1,10 +1,11 @@
-import { Placeholder } from "@/components/Placeholder";
-
-// <section id="mastodon"> — FAIXA (por quê). Purple band, one heading + paragraph.
+// <section id="mastodon"> — FAIXA (por quê). Purple band, image + heading + paragraph.
 export function MastodonSection() {
   return (
     <section id="mastodon">
-      <Placeholder label="imagem (app / lifestyle)" />
+      <img
+        src="/images/faixa.png"
+        alt="Tela de criação de treino do Quero Treinar"
+      />
       <div>
         <h3>Um app só. Do primeiro treino ao pagamento.</h3>
         <p>

@@ -1,5 +1,3 @@
-import { Placeholder } from "@/components/Placeholder";
-
 // <header> — hero. Wordmark "Quero Treinar" rendered as gradient text via CSS.
 export function Hero() {
   return (
@@ -23,10 +21,13 @@ export function Hero() {
         iPhone, Android e navegador · 7 dias grátis · sem cartão
       </p>
       <div className="screenshots">
-        <Placeholder
-          label="imagem do app (telas do produto)"
-          style={{ width: "100%", maxWidth: 1000, aspectRatio: "16 / 9", margin: "0 auto" }}
-        />
+        <picture>
+          <source media="(max-width: 700px)" srcSet="/images/hero-app-mobile.png" />
+          <img
+            src="/images/hero-app-desktop.png"
+            alt="App Quero Treinar rodando em desktop e celular"
+          />
+        </picture>
       </div>
     </header>
   );
