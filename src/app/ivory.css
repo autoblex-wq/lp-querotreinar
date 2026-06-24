@@ -1169,3 +1169,21 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
 @media only screen and (max-width: 700px) {
   #mastodon > img { justify-self: center; }
 }
+
+/* =========================================================================
+   DESTAQUES (#features): diagonal black/gray striped background
+   (replaces the Ivory ghosted-text background)
+   ========================================================================= */
+#features {
+  background-color: #121212;
+  background-image: repeating-linear-gradient(45deg, #0f0f0f 0, #0f0f0f 36px, #181818 36px, #181818 72px);
+  background-size: auto;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+@media (min-resolution: 1.3dppx) {
+  #features {
+    background-image: repeating-linear-gradient(45deg, #0f0f0f 0, #0f0f0f 36px, #181818 36px, #181818 72px);
+    background-size: auto;
+  }
+}
