@@ -1244,3 +1244,14 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   position: relative;
   z-index: 1;
 }
+
+/* MARCA PRÓPRIA mobile: composition in normal flow (keeps the button visible) */
+@media only screen and (max-width: 700px) {
+  #themes { padding-bottom: 18vw; }
+  #themes .marca-shots {
+    position: static;
+    transform: none;
+    width: 90vw;
+    margin: 30px auto 0;
+  }
+}
