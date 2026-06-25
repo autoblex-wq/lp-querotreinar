@@ -16,8 +16,8 @@ export default function Home() {
       <MastodonSection />
       <FeaturesSection />
       <DevicesSection />
-      <ThemesSection />
       <MoreSection />
+      <ThemesSection />
       <Testimonials />
       <GlobalFooter />
     </>
