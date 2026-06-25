@@ -1,11 +1,9 @@
-import { Placeholder } from "@/components/Placeholder";
-
-// <section id="themes"> — MARCA PRÓPRIA. Centered block + CTA.
+// <section id="themes"> — MARCA PRÓPRIA. Text + CTA on top; brand-customization
+// shots (wizard above, colagem below) overlaid over the lower area.
 export function ThemesSection() {
   return (
     <section id="themes">
       <div>
-        <Placeholder label="imagem do app com a sua marca" />
         <h3>Não é o nosso app. É o seu.</h3>
         <p>
           Personalize cores, logo e nome. Seus alunos instalam um app com a sua
@@ -17,6 +15,18 @@ export function ThemesSection() {
             Quero meu app
           </a>
         </p>
+      </div>
+      <div className="marca-shots">
+        <img
+          className="wizard"
+          src="/images/marca-wizard.png"
+          alt="Personalização de cores e nome da marca"
+        />
+        <img
+          className="colagem"
+          src="/images/marca-colagem.png"
+          alt="Configurações de marca do aplicativo"
+        />
       </div>
     </section>
   );
