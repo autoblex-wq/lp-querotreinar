@@ -1305,3 +1305,19 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   margin: 1.6em auto 0;
 }
 #themes .marca-shots .colagem { width: 100%; }
+
+/* FAIXA: the looping video takes the same slot/size/style as the old image */
+#mastodon > video {
+  grid-area: img;
+  align-self: center;
+  justify-self: center;
+  display: block;
+  width: 52vw;
+  max-width: 660px;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+}
+@media only screen and (max-width: 700px) {
+  #mastodon > video { width: 90vw; max-width: none; justify-self: center; }
+}
