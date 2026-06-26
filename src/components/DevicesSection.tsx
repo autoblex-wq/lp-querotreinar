@@ -1,46 +1,32 @@
-import type { Persona } from "@/types/content";
-import { Placeholder } from "@/components/Placeholder";
-
-// <section id="devices"> — PARA QUEM É. Two personas (alternating layout).
-const personas: Persona[] = [
+// <section id="devices"> — gray section, now personalized for nutritionists.
+const itens = [
   {
-    name: "Personal Trainer",
-    tagline: "Mais alunos, menos planilha.",
-    bullets: [
-      "Prescreva treinos com vídeo e acompanhe cada série",
-      "Centralize anamnese, evolução e conversas",
-      "Engaje com gamificação",
-    ],
-    imageRight: false,
+    title: "Dietas inteligentes",
+    text: "Refeições com alimentos da tabela TACO, substituições por alimento e macros reais calculados automaticamente.",
+    img: "/images/destaque-dieta.png",
+    alt: "Montagem de dieta com a Tabela TACO e cálculo de macros",
+    right: false,
   },
   {
-    name: "Nutricionista",
-    tagline: "Dietas que o aluno segue.",
-    bullets: [
-      "Monte dietas com TACO, substituições e macros",
-      "Receba a anamnese pronta antes da consulta",
-      "Atenda sozinho ou em equipe",
-    ],
-    imageRight: true,
+    title: "Vincule-se a um Personal",
+    text: "Conecte-se a um Personal Trainer que usa o app e compartilhem os mesmos alunos. Dieta e treino centralizados num só lugar — uma solução completa para o seu aluno.",
+    img: "/images/vinculados.png",
+    alt: "Tela de vínculo entre nutricionista e personal, com alunos compartilhados",
+    right: true,
   },
 ];
 
 export function DevicesSection() {
   return (
     <section id="devices">
-      <h2 className="section-title">Feito para quem vive de resultado.</h2>
+      <h2 className="section-title">Ei, Nutricionista, tem para você também!</h2>
       <ul>
-        {personas.map((p) => (
-          <li key={p.name} className={p.imageRight ? "right" : undefined}>
-            <Placeholder label="imagem" />
+        {itens.map((d) => (
+          <li key={d.title} className={d.right ? "right" : undefined}>
+            <img src={d.img} alt={d.alt} />
             <div>
-              <h3>{p.name}</h3>
-              <p className="tagline">{p.tagline}</p>
-              <ul className="bullets">
-                {p.bullets.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
+              <h3>{d.title}</h3>
+              <p>{d.text}</p>
             </div>
           </li>
         ))}

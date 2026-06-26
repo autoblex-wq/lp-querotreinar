@@ -1,25 +1,18 @@
-// <section id="features"> — DESTAQUES. Three alternating highlight rows.
+// <section id="features"> — DESTAQUES. Two alternating highlight rows.
 const destaques = [
   {
-    title: "Treinos com vídeo",
-    text: "Monte fichas com a biblioteca de exercícios e vídeos. O aluno executa por um player guiado, série a série — e registra a carga por voz.",
+    title: "Veja tudo em um lugar só.",
+    text: "Veja todas as informações do aluno num lugar só — treinos, evolução, progresso e muito mais. Acompanhe cada detalhe de um jeito simples, sem ficar caçando em mil apps.",
     img: "/images/destaque-treino.png",
-    alt: "Painel do aluno com treinos e correções em vídeo",
+    alt: "Painel do aluno com treinos, evolução e progresso",
     right: false,
-  },
-  {
-    title: "Dietas inteligentes",
-    text: "Refeições com alimentos da tabela TACO, substituições por alimento e macros reais calculados automaticamente.",
-    img: "/images/destaque-dieta.png",
-    alt: "Montagem de dieta com a Tabela TACO e cálculo de macros",
-    right: true,
   },
   {
     title: "Evolução completa",
-    text: "Fotos, medidas e progresso por grupo muscular. O aluno vê o avanço e fica motivado a continuar.",
+    text: "Veja gráficos de evolução de todos os exercícios, podendo sempre progredir analisando os resultados anteriores.",
     img: "/images/destaque-evolucao.png",
     alt: "Gráficos de evolução de carga por exercício",
-    right: false,
+    right: true,
   },
 ];
 

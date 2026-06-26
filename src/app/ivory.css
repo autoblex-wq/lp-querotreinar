@@ -1366,3 +1366,33 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
 }
 /* Marca Própria heading in white */
 #themes h3 { color: #fff; }
+
+/* =========================================================================
+   Gray section (#devices) — clean alternating image/text rows (nutricionista)
+   ========================================================================= */
+#devices ul { max-width: 1240px; margin: 0 auto; }
+#devices ul li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 0 48px;
+  margin-bottom: 56px;
+}
+#devices ul li.right { flex-direction: row-reverse; text-align: left; }
+#devices ul li img {
+  min-width: 0;
+  width: 46%;
+  max-width: 520px;
+  height: auto;
+  margin: 0;
+  border-radius: 14px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.45);
+}
+#devices ul li.right img { margin-left: 0; }
+#devices ul li div { margin: 0; max-width: 480px; flex: 1; }
+@media only screen and (max-width: 700px) {
+  #devices ul li, #devices ul li.right { flex-direction: column; gap: 18px; padding: 0 24px; margin-bottom: 40px; }
+  #devices ul li img { width: 100%; max-width: 460px; }
+  #devices ul li div { width: 100%; max-width: 100%; }
+}
