@@ -1,3 +1,5 @@
+import { PlayableVideo } from "@/components/PlayableVideo";
+
 // <section id="devices"> — gray section, now personalized for nutritionists.
 const itens = [
   {
@@ -25,15 +27,7 @@ export function DevicesSection() {
         {itens.map((d) => (
           <li key={d.title} className={d.right ? "right" : undefined}>
             {d.video ? (
-              <video
-                controls
-                playsInline
-                preload="metadata"
-                poster={d.poster}
-                aria-label={d.alt}
-              >
-                <source src={d.video} type="video/mp4" />
-              </video>
+              <PlayableVideo src={d.video} poster={d.poster} label={d.alt} />
             ) : (
               <img src={d.img} alt={d.alt} />
             )}
