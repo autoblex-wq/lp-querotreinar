@@ -1,8 +1,14 @@
-// <section id="themes"> — MARCA PRÓPRIA. Heading + small wizard shot at the top;
-// the "Configurações de Marca" colagem covers the lower (phone) area.
+// <section id="themes"> — MARCA PRÓPRIA. Big "Configurações de Marca" colagem on
+// top (with its own title); the heading + wizard + copy + CTA below it.
 export function ThemesSection() {
   return (
     <section id="themes">
+      <h2 className="marca-title">Monte seu sistema do seu jeito.</h2>
+      <img
+        className="colagem"
+        src="/images/marca-colagem.png"
+        alt="Configurações de marca do aplicativo"
+      />
       <div>
         <h3>Não é o nosso app. É o seu.</h3>
         <img
@@ -20,13 +26,6 @@ export function ThemesSection() {
             Quero meu app
           </a>
         </p>
-      </div>
-      <div className="marca-shots">
-        <img
-          className="colagem"
-          src="/images/marca-colagem.png"
-          alt="Configurações de marca do aplicativo"
-        />
       </div>
     </section>
   );

@@ -1321,3 +1321,28 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
 @media only screen and (max-width: 700px) {
   #mastodon > video { width: 90vw; max-width: none; justify-self: center; }
 }
+
+/* =========================================================================
+   MARCA PRÓPRIA (restructured): big colagem on top w/ its own title; the
+   heading + wizard + copy + CTA below.
+   ========================================================================= */
+#themes .marca-title {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.12em;
+  color: #fff;
+  max-width: 1000px;
+  margin: 0 auto 1em auto;
+  padding: 0 20px;
+}
+@media only screen and (max-width: 700px) { #themes .marca-title { font-size: 30px; } }
+
+#themes > .colagem {
+  display: block;
+  width: min(900px, 92vw);
+  height: auto;
+  margin: 0 auto 3em auto;
+  border-radius: 16px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+}
