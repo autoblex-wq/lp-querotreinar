@@ -1346,3 +1346,23 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   border-radius: 16px;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
 }
+
+/* =========================================================================
+   Shared purple fitness-icon background for FAIXA (#mastodon) + Marca Própria
+   (#themes); same scale (by width) so the two sections match.
+   ========================================================================= */
+#mastodon, #themes {
+  background-color: #44239c;
+  background-image: url(/images/section-bg.png);
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: repeat;
+}
+@media (min-resolution: 1.3dppx) {
+  #mastodon, #themes {
+    background-image: url(/images/section-bg.png);
+    background-size: 100% auto;
+  }
+}
+/* Marca Própria heading in white */
+#themes h3 { color: #fff; }
