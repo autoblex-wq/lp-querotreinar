@@ -1427,3 +1427,51 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   }
   #themes > .colagem { margin-bottom: 0.5em; }
 }
+
+/* =========================================================================
+   FAIXA video wrapper (grid image slot) + green nutrition bg for #devices
+   ========================================================================= */
+#mastodon > .faixa-media {
+  grid-area: img;
+  align-self: center;
+  justify-self: center;
+  width: 52vw;
+  max-width: 660px;
+}
+#mastodon > .faixa-media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+}
+@media only screen and (max-width: 700px) {
+  #mastodon > .faixa-media { width: 90vw; max-width: none; }
+}
+
+/* Nutri (#devices): green nutrition background, dark text for contrast */
+#devices {
+  background-color: #8bc53f;
+  background-image: url(/images/nutri-bg-desktop.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media only screen and (max-width: 700px) {
+  #devices { background-image: url(/images/nutri-bg-mobile.png); }
+}
+#devices .section-title { color: #143807; }
+#devices h3 { color: #163a07; }
+#devices p { color: #294613; }
+
+/* Nutri: readable title + frosted text cards over the green background */
+#devices .section-title { color: #fff; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45); }
+#devices ul li div {
+  background: rgba(255, 255, 255, 0.86);
+  border-radius: 16px;
+  padding: 22px 26px;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(3px);
+}
+#devices h3 { color: #15330a; }
+#devices p { color: #2b4715; }

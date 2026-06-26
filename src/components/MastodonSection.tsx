@@ -1,20 +1,17 @@
+import { PlayableVideo } from "@/components/PlayableVideo";
+
 // <section id="mastodon"> — FAIXA (Montagem de treinos). Grid: title on top;
-// looping screen-recording (left) + text (right) on desktop; stacked on mobile.
+// playable video (left) + text (right) on desktop; stacked on mobile.
 export function MastodonSection() {
   return (
     <section id="mastodon">
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="auto"
-        poster="/images/faixa.png"
-        aria-label="Demonstração da criação de treino no Quero Treinar"
-      >
-        <source src="/videos/faixa.mp4" type="video/mp4" />
-        <source src="/videos/faixa.mov" type="video/quicktime" />
-      </video>
+      <div className="faixa-media">
+        <PlayableVideo
+          src="/videos/treino.mp4"
+          poster="/images/treino-poster.jpg"
+          label="Demonstração da criação de treino no Quero Treinar"
+        />
+      </div>
       <h3>Montagem de treinos.</h3>
       <p>
         Pare de juntar planilha, PDF e WhatsApp. O Quero Treinar reúne treinos,
