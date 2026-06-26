@@ -3,8 +3,9 @@ const itens = [
   {
     title: "Dietas inteligentes",
     text: "Refeições com alimentos da tabela TACO, substituições por alimento e macros reais calculados automaticamente.",
-    img: "/images/destaque-dieta.png",
-    alt: "Montagem de dieta com a Tabela TACO e cálculo de macros",
+    video: "/videos/dieta.mp4",
+    poster: "/images/dieta-poster.jpg",
+    alt: "Demonstração da montagem de dieta com a Tabela TACO",
     right: false,
   },
   {
@@ -23,7 +24,21 @@ export function DevicesSection() {
       <ul>
         {itens.map((d) => (
           <li key={d.title} className={d.right ? "right" : undefined}>
-            <img src={d.img} alt={d.alt} />
+            {d.video ? (
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+                poster={d.poster}
+                aria-label={d.alt}
+              >
+                <source src={d.video} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={d.img} alt={d.alt} />
+            )}
             <div>
               <h3>{d.title}</h3>
               <p>{d.text}</p>

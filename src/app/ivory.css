@@ -1396,3 +1396,18 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   #devices ul li img { width: 100%; max-width: 460px; }
   #devices ul li div { width: 100%; max-width: 100%; }
 }
+
+/* Gray section: video items share the same sizing/style as the images */
+#devices ul li video {
+  min-width: 0;
+  width: 46%;
+  max-width: 520px;
+  height: auto;
+  margin: 0;
+  border-radius: 14px;
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.45);
+  display: block;
+}
+@media only screen and (max-width: 700px) {
+  #devices ul li video { width: 100%; max-width: 460px; }
+}
