@@ -26,9 +26,7 @@ export function DevicesSection() {
           <li key={d.title} className={d.right ? "right" : undefined}>
             {d.video ? (
               <video
-                autoPlay
-                loop
-                muted
+                controls
                 playsInline
                 preload="metadata"
                 poster={d.poster}
