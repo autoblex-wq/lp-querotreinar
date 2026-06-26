@@ -1,14 +1,19 @@
-// <section id="themes"> — MARCA PRÓPRIA. Big "Configurações de Marca" colagem on
-// top (with its own title); the heading + wizard + copy + CTA below it.
+// <section id="themes"> — MARCA PRÓPRIA. Big video (with audio + play button) on
+// top under its title; heading + wizard + copy + CTA below.
 export function ThemesSection() {
   return (
     <section id="themes">
       <h2 className="marca-title">Monte seu sistema do seu jeito.</h2>
-      <img
+      <video
         className="colagem"
-        src="/images/marca-colagem.png"
-        alt="Configurações de marca do aplicativo"
-      />
+        controls
+        playsInline
+        preload="metadata"
+        poster="/images/marca-poster.jpg"
+        aria-label="Vídeo: monte seu sistema do seu jeito"
+      >
+        <source src="/videos/marca.mp4" type="video/mp4" />
+      </video>
       <div>
         <h3>Não é o nosso app. É o seu.</h3>
         <img
