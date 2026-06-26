@@ -1411,3 +1411,19 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
 @media only screen and (max-width: 700px) {
   #devices ul li video { width: 100%; max-width: 460px; }
 }
+
+/* Mobile-only hint: watch the videos in landscape */
+.rotate-hint { display: none; }
+@media only screen and (max-width: 700px) {
+  .rotate-hint {
+    display: block;
+    margin: 12px auto 0 auto;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3em;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 0 24px;
+  }
+  #themes > .colagem { margin-bottom: 0.5em; }
+}

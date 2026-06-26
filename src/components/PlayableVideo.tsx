@@ -31,17 +31,22 @@ export function PlayableVideo({ src, poster, className, label }: Props) {
   }
 
   return (
-    <video
-      ref={ref}
-      className={className}
-      controls
-      playsInline
-      preload="metadata"
-      poster={poster}
-      aria-label={label}
-      onPlay={expandOnPlay}
-    >
-      <source src={src} type="video/mp4" />
-    </video>
+    <>
+      <video
+        ref={ref}
+        className={className}
+        controls
+        playsInline
+        preload="metadata"
+        poster={poster}
+        aria-label={label}
+        onPlay={expandOnPlay}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+      <span className="rotate-hint" aria-hidden="true">
+        📱 Vire o celular na horizontal para ver melhor o vídeo
+      </span>
+    </>
   );
 }
