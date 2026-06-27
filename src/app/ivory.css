@@ -1633,3 +1633,21 @@ header    { z-index: 80; }
 /* FAIXA: flat bottom so the voz-ia zigzag teeth always reveal solid purple
    (no diagonal cut leaving a black notch on the right) */
 #mastodon { clip-path: none; }
+
+/* =========================================================================
+   Purple sections (#mastodon faixa + #themes marca) -> white striped bg
+   (same as #nutri-ia) with dark text.
+   ========================================================================= */
+#mastodon, #themes {
+  background-color: #ededed;
+  background-image: url(/images/nutri-ia-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (min-resolution: 1.3dppx) {
+  #mastodon, #themes { background-image: url(/images/nutri-ia-bg.png); background-size: cover; }
+}
+/* dark text for the light background */
+#mastodon > h3, #themes .marca-title, #themes h3 { color: #18280f; }
+#mastodon > p, #themes p, #themes div p { color: #3d4a30; }
