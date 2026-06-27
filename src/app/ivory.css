@@ -1568,3 +1568,46 @@ header     { z-index: 70; }
 .lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.86); display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
 .lightbox-img { max-width: 95vw; max-height: 92vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 24px 90px rgba(0, 0, 0, 0.7); }
 .lightbox-close { position: fixed; top: 12px; right: 18px; font-size: 42px; line-height: 1; color: #fff; background: none; border: 0; cursor: pointer; padding: 4px 12px; }
+
+/* =========================================================================
+   NEW SECTION #voz-ia (Treino ditado por voz com IA) — between #mastodon & #features
+   ========================================================================= */
+header    { z-index: 80; }
+#mastodon { z-index: 70; }
+#voz-ia   { z-index: 60; }
+
+#voz-ia {
+  position: relative;
+  margin-top: -5vw;
+  padding: 15vw 0 11vw 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  background-color: #0c0c0c;
+  background-image: url(/images/voz-bg-desktop.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+@media only screen and (max-width: 700px) { #voz-ia { background-image: url(/images/voz-bg-mobile.png); } }
+#voz-ia .voz-wrap { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+#voz-ia .voz-badge { display: inline-block; background: #F2C014; color: #1a1a1a; font-weight: 800; font-size: 13px; letter-spacing: 0.1em; padding: 6px 15px; border-radius: 40px; margin-bottom: 1.1em; }
+#voz-ia .voz-title { font-size: 44px; font-weight: 800; color: #fff; line-height: 1.1em; margin: 0 auto 0.9em auto; }
+@media only screen and (max-width: 700px) { #voz-ia .voz-title { font-size: 30px; } }
+#voz-ia .voz-video { display: block; width: 100%; max-width: 430px; height: auto; margin: 0 auto; mix-blend-mode: multiply; }
+
+/* voz-ia: spotlight behind the phone so the multiply silhouette reads */
+#voz-ia {
+  background-image:
+    radial-gradient(ellipse 38% 46% at 50% 56%, rgba(150, 225, 235, 0.92) 0%, rgba(70, 150, 165, 0.45) 42%, rgba(12, 12, 12, 0) 70%),
+    url(/images/voz-bg-desktop.png);
+}
+@media only screen and (max-width: 700px) {
+  #voz-ia {
+    background-image:
+      radial-gradient(ellipse 60% 34% at 50% 60%, rgba(150, 225, 235, 0.92) 0%, rgba(70, 150, 165, 0.45) 42%, rgba(12, 12, 12, 0) 70%),
+      url(/images/voz-bg-mobile.png);
+  }
+}
+
+/* voz-ia: ZIGZAG top + bottom edges (stands out); above neighbors so teeth reveal them */
+#voz-ia { z-index: 100; clip-path: polygon(0.000% 2.4vw, 4.545% 0, 9.091% 2.4vw, 13.636% 0, 18.182% 2.4vw, 22.727% 0, 27.273% 2.4vw, 31.818% 0, 36.364% 2.4vw, 40.909% 0, 45.455% 2.4vw, 50.000% 0, 54.545% 2.4vw, 59.091% 0, 63.636% 2.4vw, 68.182% 0, 72.727% 2.4vw, 77.273% 0, 81.818% 2.4vw, 86.364% 0, 90.909% 2.4vw, 95.455% 0, 100.000% 2.4vw, 100.000% calc(100% - 2.4vw), 95.455% 100%, 90.909% calc(100% - 2.4vw), 86.364% 100%, 81.818% calc(100% - 2.4vw), 77.273% 100%, 72.727% calc(100% - 2.4vw), 68.182% 100%, 63.636% calc(100% - 2.4vw), 59.091% 100%, 54.545% calc(100% - 2.4vw), 50.000% 100%, 45.455% calc(100% - 2.4vw), 40.909% 100%, 36.364% calc(100% - 2.4vw), 31.818% 100%, 27.273% calc(100% - 2.4vw), 22.727% 100%, 18.182% calc(100% - 2.4vw), 13.636% 100%, 9.091% calc(100% - 2.4vw), 4.545% 100%, 0.000% calc(100% - 2.4vw)); }

@@ -1,5 +1,6 @@
 import { Hero } from "@/components/Hero";
 import { MastodonSection } from "@/components/MastodonSection";
+import { VozIaSection } from "@/components/VozIaSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { DevicesSection } from "@/components/DevicesSection";
 import { NutriIaSection } from "@/components/NutriIaSection";
@@ -15,6 +16,7 @@ export default function Home() {
     <>
       <Hero />
       <MastodonSection />
+      <VozIaSection />
       <FeaturesSection />
       <DevicesSection />
       <NutriIaSection />
