@@ -27,6 +27,7 @@ export function MastodonSection() {
         <div className="faixa-media">
           <PlayableVideo
             src="/videos/treino-ia.mp4"
+            poster="/images/treino-ia-poster.jpg"
             label="Demonstração da montagem de treino com IA no Quero Treinar"
           />
         </div>
