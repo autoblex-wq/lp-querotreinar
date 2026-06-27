@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { MastodonSection } from "@/components/MastodonSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
 import { DevicesSection } from "@/components/DevicesSection";
+import { NutriIaSection } from "@/components/NutriIaSection";
 import { ThemesSection } from "@/components/ThemesSection";
 import { MoreSection } from "@/components/MoreSection";
 import { Testimonials } from "@/components/Testimonials";
@@ -16,6 +17,7 @@ export default function Home() {
       <MastodonSection />
       <FeaturesSection />
       <DevicesSection />
+      <NutriIaSection />
       <MoreSection />
       <ThemesSection />
       <Testimonials />

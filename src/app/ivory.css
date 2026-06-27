@@ -1475,3 +1475,43 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
 }
 #devices h3 { color: #15330a; }
 #devices p { color: #2b4715; }
+
+/* =========================================================================
+   NEW SECTION #nutri-ia (AI diet import) — inserted between #devices and #more.
+   Re-layer z-index so the diagonal overlaps stay correct (descending = DOM).
+   ========================================================================= */
+header     { z-index: 70; }
+#mastodon  { z-index: 60; }
+#features  { z-index: 50; }
+#devices   { z-index: 40; }
+#nutri-ia  { z-index: 30; }
+#more      { z-index: 20; }
+#themes    { z-index: 10; }
+
+#nutri-ia {
+  position: relative;
+  margin-top: -5vw;
+  padding: 16vw 0 11vw 0;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  background-color: #10160c;
+  background-image: radial-gradient(120% 85% at 50% 0%, rgba(72, 132, 36, 0.30), rgba(16, 22, 12, 0) 62%);
+  text-align: center;
+}
+#nutri-ia .ia-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+#nutri-ia .ia-title {
+  font-size: 42px; font-weight: 800; line-height: 1.12em; color: #fff;
+  margin: 0 auto 0.5em auto;
+}
+#nutri-ia .ia-title .accent { color: #9ED15A; }
+#nutri-ia .ia-sub {
+  font-size: 20px; font-weight: 300; line-height: 1.5em; color: #D7E3C8;
+  max-width: 780px; margin: 0 auto 2.4em auto;
+}
+#nutri-ia .ia-video {
+  display: block; width: 100%; max-width: 840px; height: auto; margin: 0 auto;
+  border-radius: 16px; box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+@media only screen and (max-width: 700px) {
+  #nutri-ia .ia-title { font-size: 30px; }
+  #nutri-ia .ia-sub { font-size: 17px; }
+}
