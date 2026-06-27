@@ -1,4 +1,5 @@
 import { PlayableVideo } from "@/components/PlayableVideo";
+import { AlunoShot } from "@/components/AlunoShot";
 
 // <section id="nutri-ia"> — two blocks: AI diet import (PDF) + "Como o aluno vê".
 export function NutriIaSection() {
@@ -39,8 +40,7 @@ export function NutriIaSection() {
             Facilidade é o sobrenome. O nome é 100%. 😎
           </p>
         </div>
-        <img
-          className="aluno-img"
+        <AlunoShot
           src="/images/aluno-ve.png"
           alt="Telas do app do aluno: plano alimentar e lista de compras"
         />

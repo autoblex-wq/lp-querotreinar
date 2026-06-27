@@ -1549,3 +1549,22 @@ header     { z-index: 70; }
   #nutri-ia .aluno-block .aluno-text .ia-sub { text-align: center; }
   #nutri-ia .aluno-block .aluno-img { width: 78%; max-width: 320px; }
 }
+
+/* "Como o aluno vê": clickable image (lightbox) + "Clique aqui!" hand */
+#nutri-ia .aluno-block .aluno-shot { display: flex; align-items: center; justify-content: center; gap: 14px; flex-shrink: 0; }
+#nutri-ia .aluno-block .aluno-img { display: block; width: 340px; max-width: 42vw; height: auto; cursor: zoom-in; border-radius: 8px; transition: transform 0.15s ease-out; }
+#nutri-ia .aluno-block .aluno-img:hover { transform: scale(1.02); }
+#nutri-ia .aluno-cta { display: flex; flex-direction: column; align-items: center; gap: 2px; background: none; border: 0; padding: 0; cursor: pointer; }
+#nutri-ia .aluno-cta .hand { font-size: 46px; line-height: 1; display: inline-block; --hand-rot: rotate(-6deg); animation: hand-nudge 1.05s ease-in-out infinite; }
+#nutri-ia .aluno-cta .cta-text { color: #2f871d; font-weight: 800; font-size: 17px; white-space: nowrap; }
+@keyframes hand-nudge { 0%, 100% { transform: var(--hand-rot) translateX(0); } 50% { transform: var(--hand-rot) translateX(-9px); } }
+@media only screen and (max-width: 700px) {
+  #nutri-ia .aluno-block .aluno-shot { flex-direction: column; gap: 8px; }
+  #nutri-ia .aluno-block .aluno-img { width: 70%; max-width: 290px; }
+  #nutri-ia .aluno-cta .hand { --hand-rot: rotate(90deg); }
+}
+
+/* Lightbox (maximized image) */
+.lightbox { position: fixed; inset: 0; z-index: 9999; background: rgba(0, 0, 0, 0.86); display: flex; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+.lightbox-img { max-width: 95vw; max-height: 92vh; width: auto; height: auto; border-radius: 12px; box-shadow: 0 24px 90px rgba(0, 0, 0, 0.7); }
+.lightbox-close { position: fixed; top: 12px; right: 18px; font-size: 42px; line-height: 1; color: #fff; background: none; border: 0; cursor: pointer; padding: 4px 12px; }
