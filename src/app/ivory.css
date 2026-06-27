@@ -1629,3 +1629,7 @@ header    { z-index: 80; }
 .voz-modal { position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0.93); display: flex; align-items: center; justify-content: center; padding: 16px; }
 .voz-modal-video { max-width: 95vw; max-height: 94vh; width: auto; height: auto; border-radius: 14px; box-shadow: 0 24px 90px rgba(0, 0, 0, 0.7); background: #000; }
 .voz-modal-close { position: fixed; top: 10px; right: 16px; font-size: 44px; line-height: 1; color: #fff; background: none; border: 0; cursor: pointer; padding: 4px 12px; z-index: 1; }
+
+/* FAIXA: flat bottom so the voz-ia zigzag teeth always reveal solid purple
+   (no diagonal cut leaving a black notch on the right) */
+#mastodon { clip-path: none; }
