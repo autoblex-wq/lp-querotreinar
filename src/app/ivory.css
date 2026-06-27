@@ -1527,3 +1527,25 @@ header     { z-index: 70; }
 #nutri-ia .ia-title { color: #18280f; }
 #nutri-ia .ia-title .accent { color: #2f871d; }
 #nutri-ia .ia-sub { color: #41502f; }
+
+/* #nutri-ia second block: "Como o aluno vê" (text + phones image, side by side) */
+#nutri-ia .aluno-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 56px;
+  max-width: 1080px;
+  margin: 5.5em auto 0 auto;
+  padding: 0 24px;
+  text-align: left;
+}
+#nutri-ia .aluno-block .aluno-text { flex: 1; max-width: 560px; }
+#nutri-ia .aluno-block .aluno-text .ia-title { text-align: left; margin: 0 0 0.5em 0; }
+#nutri-ia .aluno-block .aluno-text .ia-sub { text-align: left; max-width: none; margin: 0 0 1em 0; }
+#nutri-ia .aluno-block .aluno-img { width: 42%; max-width: 440px; height: auto; }
+@media only screen and (max-width: 700px) {
+  #nutri-ia .aluno-block { flex-direction: column; gap: 26px; margin-top: 3.5em; }
+  #nutri-ia .aluno-block .aluno-text .ia-title,
+  #nutri-ia .aluno-block .aluno-text .ia-sub { text-align: center; }
+  #nutri-ia .aluno-block .aluno-img { width: 78%; max-width: 320px; }
+}
