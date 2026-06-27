@@ -26,9 +26,9 @@ export function Hero() {
       </div>
       <div className="screenshots">
         <picture>
-          <source media="(max-width: 700px)" srcSet="/images/hero-app-mobile.png" />
+          <source media="(max-width: 700px)" srcSet="/images/hero-app-mobile.webp" />
           <img
-            src="/images/hero-app-desktop.png"
+            src="/images/hero-app-desktop.webp"
             alt="App Quero Treinar rodando em desktop e celular"
           />
         </picture>

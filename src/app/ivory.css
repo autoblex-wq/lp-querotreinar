@@ -998,7 +998,7 @@ header {
   background-color: #0b0b0d;
   background-image:
     linear-gradient(to bottom, rgba(11, 11, 13, 0) 28%, rgba(11, 11, 13, 0.72) 66%, #0b0b0d 96%),
-    url(/images/hero-bg-desktop.png);
+    url(/images/hero-bg-desktop.webp);
   background-repeat: no-repeat, no-repeat;
   background-position: center top, center top;
   background-size: 100% 64vw, 100% auto;
@@ -1007,7 +1007,7 @@ header {
   header {
     background-image:
       linear-gradient(to bottom, rgba(11, 11, 13, 0) 30%, rgba(11, 11, 13, 0.8) 70%, #0b0b0d 100%),
-      url(/images/hero-bg-mobile.png);
+      url(/images/hero-bg-mobile.webp);
     background-size: 100% 150vw, 100% auto;
   }
 }
@@ -1131,7 +1131,7 @@ header {
   background-color: #05050c;
   background-image:
     linear-gradient(to bottom, rgba(5, 5, 12, 0) 28%, rgba(5, 5, 12, 0.72) 66%, #05050c 96%),
-    url(/images/hero-bg-desktop.png);
+    url(/images/hero-bg-desktop.webp);
   background-repeat: no-repeat, no-repeat;
   background-position: center top, center top;
   background-size: 100% 64vw, 100% auto;
@@ -1141,7 +1141,7 @@ header .screenshots img { width: 100%; max-width: none; height: auto; border-rad
   header {
     background-image:
       linear-gradient(to bottom, rgba(5, 5, 12, 0) 30%, rgba(5, 5, 12, 0.82) 70%, #05050c 100%),
-      url(/images/hero-bg-mobile.png);
+      url(/images/hero-bg-mobile.webp);
     background-size: 100% 150vw, 100% auto;
   }
   header .screenshots { margin: 26px 0 0 0; }
