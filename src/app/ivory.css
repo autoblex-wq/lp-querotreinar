@@ -1681,6 +1681,16 @@ header    { z-index: 80; }
 /* darker image lightbox overlay (match the video modal) */
 .lightbox { background: rgba(0, 0, 0, 0.92); }
 
+/* no sideways drag on mobile: clamp page width + center the videos */
+html, body { overflow-x: hidden; max-width: 100%; }
+@media only screen and (max-width: 700px) {
+  #mastodon .faixa-feature .faixa-media,
+  #devices ul li video,
+  #nutri-ia video,
+  #themes .colagem,
+  #voz-ia .voz-player { margin-left: auto; margin-right: auto; }
+}
+
 /* caption under the voice card */
 #voz-ia .voz-caption { margin: 1.4em auto 0 auto; max-width: 640px; font-size: 22px; font-weight: 600; line-height: 1.35em; color: #fff; }
 @media only screen and (max-width: 700px) { #voz-ia .voz-caption { font-size: 18px; padding: 0 16px; } }
@@ -1698,6 +1708,7 @@ header    { z-index: 80; }
   padding: 15vw 0 12vw 0;
 }
 #mastodon .faixa-feature {
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
