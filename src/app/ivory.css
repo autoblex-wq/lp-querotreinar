@@ -1651,3 +1651,35 @@ header    { z-index: 80; }
 /* dark text for the light background */
 #mastodon > h3, #themes .marca-title, #themes h3 { color: #18280f; }
 #mastodon > p, #themes p, #themes div p { color: #3d4a30; }
+
+/* =========================================================================
+   DESTAQUES (#features) -> white striped bg + dark text;
+   RECURSOS (#more) -> dark diagonal striped bg
+   ========================================================================= */
+#features {
+  background-color: #ededed;
+  background-image: url(/images/nutri-ia-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+@media (min-resolution: 1.3dppx) { #features { background-image: url(/images/nutri-ia-bg.png); background-size: cover; } }
+#features h3 { color: #18280f; text-shadow: none; }
+#features p { color: #3d4a30; text-shadow: none; }
+
+#more {
+  background-color: #121212;
+  background-image: repeating-linear-gradient(45deg, #0f0f0f 0, #0f0f0f 36px, #181818 36px, #181818 72px);
+  background-size: auto;
+  background-position: 0 0;
+  background-repeat: repeat;
+}
+@media (min-resolution: 1.3dppx) {
+  #more { background-image: repeating-linear-gradient(45deg, #0f0f0f 0, #0f0f0f 36px, #181818 36px, #181818 72px); background-size: auto; }
+}
+
+/* voz preview must not intercept taps (mobile): the play button handles them */
+#voz-ia .voz-preview { pointer-events: none; }
+
+/* darker image lightbox overlay (match the video modal) */
+.lightbox { background: rgba(0, 0, 0, 0.92); }

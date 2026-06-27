@@ -1,11 +1,26 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
-// Clickable student-app image that opens maximized in a lightbox, plus a
-// "Clique aqui!" hand prompt pointing at it.
+// Clickable student-app image that opens maximized in a lightbox (rendered via
+// a portal so the section's clip-path doesn't clip it), plus a "Clique aqui!"
+// hand prompt pointing at it.
 export function AlunoShot({ src, alt }: { src: string; alt: string }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <div className="aluno-shot">
@@ -27,19 +42,21 @@ export function AlunoShot({ src, alt }: { src: string; alt: string }) {
         <span className="cta-text">Clique aqui!</span>
       </button>
 
-      {open && (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          onClick={() => setOpen(false)}
-        >
-          <button type="button" className="lightbox-close" aria-label="Fechar">
-            ×
-          </button>
-          <img className="lightbox-img" src={src} alt={alt} />
-        </div>
-      )}
+      {open &&
+        createPortal(
+          <div
+            className="lightbox"
+            role="dialog"
+            aria-modal="true"
+            onClick={() => setOpen(false)}
+          >
+            <button type="button" className="lightbox-close" aria-label="Fechar">
+              ×
+            </button>
+            <img className="lightbox-img" src={src} alt={alt} />
+          </div>,
+          document.body,
+        )}
     </div>
   );
 }
