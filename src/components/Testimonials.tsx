@@ -1,59 +1,38 @@
-import type { Testimonial } from "@/types/content";
-import { Placeholder } from "@/components/Placeholder";
-
-// Placeholder testimonials — swap for real quotes. They fade-cycle via CSS.
-const depoimentos: Testimonial[] = [
-  {
-    position: "one",
-    quote: "“[Espaço para um depoimento real — o que mudou no seu acompanhamento.]”",
-    author: "Nome · Personal Trainer",
-  },
-  {
-    position: "two",
-    quote: "“[Espaço para um depoimento real — sobre dietas e adesão dos alunos.]”",
-    author: "Nome · Nutricionista",
-  },
-  {
-    position: "three",
-    quote: "“[Espaço para um depoimento real — sobre cobrança e organização.]”",
-    author: "Nome · Profissional",
-  },
-  {
-    position: "four",
-    quote: "“[Espaço para um depoimento real — sobre ter o app com a sua marca.]”",
-    author: "Nome · Profissional",
-  },
-];
-
-// <footer> — DEPOIMENTOS + CTA final.
+// <footer> — CONVITE FINAL: special invitation to a meeting, over the brand
+// green background (desktop/mobile), with the Quero Treinar logo and WhatsApp CTA.
 export function Testimonials() {
+  const whatsappReuniao =
+    "https://wa.me/5547999995954?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20reuni%C3%A3o%20para%20conhecer%20o%20Quero%20Treinar.";
+
   return (
     <footer>
-      <h3>O que dizem.</h3>
-      <ul id="quotes">
-        {depoimentos.map((q) => (
-          <li key={q.position} className={q.position}>
-            <blockquote>
-              <a href="#">{q.quote}</a>
-            </blockquote>
-            <p>
-              <Placeholder label="" />
-              {q.author}
-            </p>
-          </li>
-        ))}
-      </ul>
       <div className="final-cta" id="cta">
-        <h2 className="cta-title">Comece hoje. Saúde manda em tudo.</h2>
+        <img
+          className="convite-logo"
+          src="/images/logo-quero-treinar.png"
+          alt="Quero Treinar"
+        />
+        <h2 className="cta-title">Um convite especial pra você.</h2>
         <p className="cta-text">
-          Crie sua conta e teste a plataforma completa por 7 dias. Sem cartão,
-          sem compromisso.
+          Vamos marcar uma conversa? Agende uma reunião sem compromisso para
+          conhecer o Quero Treinar por dentro. A gente te mostra tudo, tira suas
+          dúvidas e ajuda a montar o seu app.
         </p>
         <div className="actions">
-          <a className="btn btn-primary" href="#">
-            Começar teste grátis
+          <a
+            className="btn btn-primary"
+            href={whatsappReuniao}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Quero agendar uma reunião
           </a>
-          <a className="btn btn-secondary" href="#">
+          <a
+            className="btn btn-secondary"
+            href="https://querotreinar.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Já tenho conta
           </a>
         </div>

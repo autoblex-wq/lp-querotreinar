@@ -12,7 +12,12 @@ export function Hero() {
         Nutricionistas.
       </p>
       <div className="actions">
-        <a className="btn btn-primary" href="#cta">
+        <a
+          className="btn btn-primary"
+          href="https://wa.me/5547999995954?text=Ol%C3%A1!%20Quero%20solicitar%20um%20teste%20gratuito%20do%20app%20Quero%20Treinar."
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Começar teste grátis
         </a>
         <a className="btn btn-secondary" href="#more">

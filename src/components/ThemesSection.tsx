@@ -25,7 +25,12 @@ export function ThemesSection() {
           no centro da relação.
         </p>
         <p className="button">
-          <a className="btn btn-primary" href="#cta">
+          <a
+            className="btn btn-primary"
+            href="https://querotreinar.com/contratar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Quero meu app
           </a>
         </p>
