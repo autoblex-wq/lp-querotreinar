@@ -1515,3 +1515,15 @@ header     { z-index: 70; }
   #nutri-ia .ia-title { font-size: 30px; }
   #nutri-ia .ia-sub { font-size: 17px; }
 }
+
+/* #nutri-ia: light diagonal-stripe background (dark text for contrast) */
+#nutri-ia {
+  background-color: #ededed;
+  background-image: url(/images/nutri-ia-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#nutri-ia .ia-title { color: #18280f; }
+#nutri-ia .ia-title .accent { color: #2f871d; }
+#nutri-ia .ia-sub { color: #41502f; }
