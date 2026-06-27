@@ -1611,3 +1611,21 @@ header    { z-index: 80; }
 
 /* voz-ia: ZIGZAG top + bottom edges (stands out); above neighbors so teeth reveal them */
 #voz-ia { z-index: 100; clip-path: polygon(0.000% 2.4vw, 4.545% 0, 9.091% 2.4vw, 13.636% 0, 18.182% 2.4vw, 22.727% 0, 27.273% 2.4vw, 31.818% 0, 36.364% 2.4vw, 40.909% 0, 45.455% 2.4vw, 50.000% 0, 54.545% 2.4vw, 59.091% 0, 63.636% 2.4vw, 68.182% 0, 72.727% 2.4vw, 77.273% 0, 81.818% 2.4vw, 86.364% 0, 90.909% 2.4vw, 95.455% 0, 100.000% 2.4vw, 100.000% calc(100% - 2.4vw), 95.455% 100%, 90.909% calc(100% - 2.4vw), 86.364% 100%, 81.818% calc(100% - 2.4vw), 77.273% 100%, 72.727% calc(100% - 2.4vw), 68.182% 100%, 63.636% calc(100% - 2.4vw), 59.091% 100%, 54.545% calc(100% - 2.4vw), 50.000% 100%, 45.455% calc(100% - 2.4vw), 40.909% 100%, 36.364% calc(100% - 2.4vw), 31.818% 100%, 27.273% calc(100% - 2.4vw), 22.727% 100%, 18.182% calc(100% - 2.4vw), 13.636% 100%, 9.091% calc(100% - 2.4vw), 4.545% 100%, 0.000% calc(100% - 2.4vw)); }
+
+/* voz-ia player: bigger preview + play button + maximized clean video modal */
+#voz-ia .voz-player { position: relative; display: inline-block; width: 540px; max-width: 90vw; line-height: 0; }
+#voz-ia .voz-preview { display: block; width: 100%; height: auto; mix-blend-mode: multiply; }
+#voz-ia .voz-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 84px; height: 84px; border-radius: 50%;
+  background: rgba(242, 192, 20, 0.95); color: #141414; border: 0;
+  font-size: 32px; line-height: 1; cursor: pointer; padding-left: 5px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45); transition: transform 0.15s ease-out;
+}
+#voz-ia .voz-play:hover { transform: translate(-50%, -50%) scale(1.08); }
+@media only screen and (max-width: 700px) { #voz-ia .voz-play { width: 66px; height: 66px; font-size: 25px; } }
+
+.voz-modal { position: fixed; inset: 0; z-index: 10000; background: rgba(0, 0, 0, 0.93); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.voz-modal-video { max-width: 95vw; max-height: 94vh; width: auto; height: auto; border-radius: 14px; box-shadow: 0 24px 90px rgba(0, 0, 0, 0.7); background: #000; }
+.voz-modal-close { position: fixed; top: 10px; right: 16px; font-size: 44px; line-height: 1; color: #fff; background: none; border: 0; cursor: pointer; padding: 4px 12px; z-index: 1; }
