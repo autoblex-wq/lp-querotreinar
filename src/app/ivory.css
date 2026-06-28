@@ -1681,6 +1681,10 @@ header    { z-index: 80; }
 /* darker image lightbox overlay (match the video modal) */
 .lightbox { background: rgba(0, 0, 0, 0.92); }
 
+/* RECURSOS (#more): real 3D icons in the list (replace the placeholder) */
+#more ul li .recurso-icon { width: 62px; height: 62px; min-width: 62px; border-radius: 14px; margin-right: 14px; display: block; flex-shrink: 0; }
+@media only screen and (max-width: 500px) { #more ul li .recurso-icon { width: 54px; height: 54px; min-width: 54px; margin-right: 12px; } }
+
 /* no sideways drag on mobile: clamp page width + center the videos */
 html, body { overflow-x: hidden; max-width: 100%; }
 @media only screen and (max-width: 700px) {

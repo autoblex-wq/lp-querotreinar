@@ -3,6 +3,7 @@
 export interface Recurso {
   title: string;
   description: string;
+  icon: string;
 }
 
 export interface Persona {
