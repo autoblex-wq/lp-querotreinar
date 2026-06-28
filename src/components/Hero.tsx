@@ -3,7 +3,7 @@ export function Hero() {
   return (
     <header>
       <h1>
-        <img src="/images/logo-quero-treinar.png" alt="Quero Treinar" />
+        <img src="/images/logo-quero-treinar.webp" alt="Quero Treinar" />
       </h1>
       <h2>Saúde manda em tudo.</h2>
       <p>

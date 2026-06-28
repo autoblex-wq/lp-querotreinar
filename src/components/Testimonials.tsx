@@ -9,7 +9,7 @@ export function Testimonials() {
       <div className="final-cta" id="cta">
         <img
           className="convite-logo"
-          src="/images/logo-quero-treinar.png"
+          src="/images/logo-quero-treinar.webp"
           alt="Quero Treinar"
         />
         <h2 className="cta-title">Um convite especial pra você.</h2>
