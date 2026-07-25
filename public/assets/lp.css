@@ -1,0 +1,679 @@
+/* LP Quero Treinar — conteúdo de lp.querotreinar.com sobre a animação
+   de scroll (vídeos de massinha) do site Higgsfield como background. */
+
+:root {
+  --lp-void: #05050b;
+  --lp-panel: color-mix(in srgb, #05050b 82%, transparent);
+  --lp-panel-strong: color-mix(in srgb, #05050b 92%, transparent);
+  --lp-white: #ffffff;
+  --lp-silver: #cccccc;
+  --lp-smoke: #b3b3b3;
+  --lp-dim: #a3a3a3;
+  --lp-violet: #7047ba;
+  --lp-glow: #ba94ff;
+  --lp-green-link: #a6be7c;
+  --lp-green-1: #93ac68;
+  --lp-green-2: #65783e;
+  --lp-font: -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --lp-radius: 22px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { color-scheme: dark; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  background: var(--lp-void);
+  color: var(--lp-white);
+  font-family: "Outfit", var(--lp-font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tipografia em três vozes: títulos na serifada robusta, frases de destaque
+   na manuscrita, corpo na sans simples. Alternância por FRASE. */
+.lp-hero h2,
+.lp-copy h3,
+.lp-section-title,
+.lp-recursos-head h3,
+.lp-cta h2 {
+  font-family: "Alfa Slab One", serif !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em;
+}
+.f-hand {
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  font-size: 1.32em;
+  line-height: 0.9;
+  display: inline-block;
+  transform: rotate(-2deg);
+}
+.f-slab { font-family: "Alfa Slab One", serif; font-weight: 400; }
+p .f-hand { font-size: 1.35em; transform: rotate(-1.5deg); }
+
+img, video { max-width: 100%; display: block; }
+a { color: var(--lp-green-link); text-decoration: none; }
+a:hover { color: var(--lp-glow); }
+
+/* ---------- Botões (identidade do site publicado) ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 30px;
+  border-radius: 40px;
+  font-size: 17px;
+  font-weight: 600;
+  transition: transform 0.12s ease, filter 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+  border: 0;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(#93ac68, #65783e);
+}
+.btn-primary:hover { filter: brightness(1.12); color: #fff; }
+.btn-secondary {
+  color: var(--lp-white);
+  background: color-mix(in srgb, #ffffff 10%, transparent);
+  border: 1px solid color-mix(in srgb, #ffffff 22%, transparent);
+}
+.btn-secondary:hover { background: color-mix(in srgb, #ffffff 16%, transparent); color: var(--lp-white); }
+
+/* ---------- Scroll-scrub: ajustes p/ background de página inteira ---------- */
+
+.scroll-scrub__poster,
+.scroll-scrub__video { filter: brightness(0.55) saturate(0.85); }
+
+.scroll-scrub__story .lp-band { pointer-events: auto; }
+
+.scroll-scrub__progress {
+  position: fixed !important;
+  top: 0; right: 0; left: 0;
+  z-index: 61;
+}
+.scroll-scrub__route {
+  position: fixed !important;
+  top: 14px;
+  left: 50% !important;
+  right: auto !important;
+  transform: translateX(-50%);
+  z-index: 60;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  justify-content: center;
+  background: var(--lp-panel);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, #ffffff 10%, transparent);
+  border-radius: 40px;
+  padding: 4px 12px;
+}
+.scroll-scrub__route-button {
+  font-family: var(--lp-font) !important;
+  letter-spacing: 0.05em;
+  min-height: 2.4rem !important;
+}
+
+/* ---------- Estrutura das faixas de conteúdo ---------- */
+
+.lp-band { position: relative; padding: 9vh 0; }
+
+.lp-container {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Conteúdo flutuando direto sobre a animação: sem fundo, texto com sombra
+   para leitura e mídia com sombra profunda (efeito de flutuação). */
+.lp-panel { padding: clamp(8px, 2vw, 24px) 0; }
+.lp-panel + .lp-panel { margin-top: 10vh; }
+
+.lp-band {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65), 0 4px 26px rgba(0, 0, 0, 0.55);
+}
+.lp-media video, .lp-media img {
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.45), 0 42px 90px rgba(0, 0, 0, 0.55);
+}
+.btn { text-shadow: none; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); }
+
+/* ---------- Hero ---------- */
+
+.lp-hero { text-align: center; padding-top: 14vh; }
+.lp-hero .lp-logo { width: min(340px, 70vw); margin: 0 auto 28px; }
+.lp-hero h2 {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.lp-hero > .lp-panel > p {
+  max-width: 640px;
+  margin: 20px auto 0;
+  color: var(--lp-silver);
+  font-size: 19px;
+  line-height: 1.55;
+}
+.lp-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+.lp-hero .lp-screenshots {
+  position: relative;
+  margin-top: 44px;
+  padding-right: clamp(60px, 12vw, 150px);
+}
+.lp-shot-notebook {
+  width: min(760px, 88%);
+  height: auto;
+  margin: 0 auto;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.5)) drop-shadow(0 60px 110px rgba(0, 0, 0, 0.55));
+}
+.lp-shot-phone {
+  position: absolute;
+  right: clamp(0px, 4vw, 40px);
+  bottom: -8%;
+  width: clamp(120px, 22%, 230px);
+  height: auto;
+  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55)) drop-shadow(0 46px 90px rgba(0, 0, 0, 0.5));
+}
+
+/* ---------- Faixas de vídeo + texto (mastodon) ---------- */
+
+.lp-feature-row {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(24px, 4vw, 44px);
+  align-items: center;
+}
+.lp-feature-row.reverse { grid-template-columns: 1fr 1.15fr; }
+.lp-feature-row.reverse .lp-media { order: 2; }
+.lp-feature-row.reverse .lp-copy { order: 1; }
+@media (max-width: 760px) {
+  .lp-feature-row, .lp-feature-row.reverse { grid-template-columns: 1fr; }
+  .lp-feature-row.reverse .lp-media { order: 0; }
+}
+.lp-media video, .lp-media img { width: 100%; border-radius: 14px; }
+.lp-copy h3 {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.lp-copy p { color: var(--lp-smoke); }
+
+/* Nutri agrupado: as duas linhas num painel só, mais próximas */
+.lp-nutri-grupo .lp-feature-row + .lp-feature-row { margin-top: clamp(32px, 5vh, 56px); }
+
+/* ---------- Desafios (sobre a arena até o pódio) ---------- */
+
+.lp-band-desafios { padding-bottom: 42vh; }
+.lp-desafios-card { padding-top: 6vh; }
+.lp-desafios-card img {
+  width: min(900px, 94%);
+  margin: 0 auto;
+  filter: drop-shadow(0 20px 36px rgba(0, 0, 0, 0.5)) drop-shadow(0 50px 100px rgba(0, 0, 0, 0.5));
+}
+.lp-desafios-aluno {
+  margin-top: 7vh;
+  text-align: center;
+}
+.lp-desafios-aluno p {
+  color: var(--lp-silver);
+  font-size: 18px;
+  margin-bottom: 22px;
+}
+
+/* Lettering desconstruído: três fontes brancas alternadas, tamanhos e
+   inclinações irregulares, encaixes desalinhados. */
+.lp-lettering {
+  color: #fff !important;
+  font-size: clamp(24px, 3.6vw, 42px);
+  line-height: 1.05;
+  max-width: 20ch;
+  margin: 0 auto;
+}
+.lp-lettering .w { display: inline-block; margin: 0 0.1em; }
+.lp-lettering .f1 { font-family: "Alfa Slab One", serif; font-weight: 400; }
+.lp-lettering .f2 { font-family: "Caveat", cursive; font-weight: 700; font-size: 1.55em; }
+.lp-lettering .f3 { font-family: "Outfit", sans-serif; font-weight: 400; font-size: 0.78em; letter-spacing: 0.04em; }
+.lp-lettering .big { font-size: 1.35em; }
+.lp-lettering .w:nth-child(odd) { transform: rotate(-2.5deg) translateY(-0.06em); }
+.lp-lettering .w:nth-child(even) { transform: rotate(2deg) translateY(0.08em); }
+.lp-lettering .w:nth-child(3n) { transform: rotate(-1deg) translateY(0.14em); }
+.lp-lettering .big { transform: rotate(-3deg) translateY(0.1em) !important; }
+.lp-desafios-aluno img {
+  width: min(660px, 86%);
+  margin: 0 auto;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.5)) drop-shadow(0 44px 90px rgba(0, 0, 0, 0.5));
+}
+
+.lp-media-cutout img {
+  box-shadow: none !important;
+  border-radius: 0;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.5)) drop-shadow(0 44px 90px rgba(0, 0, 0, 0.55));
+}
+
+/* Gestão: o card fica fixo em tela (sticky) enquanto o vídeo avança até o
+   último frame ao longo de toda a faixa. */
+.lp-band-gestao {
+  padding: 0;
+  min-height: 240vh;
+}
+.lp-gestao-pin {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.lp-gestao-pin .lp-container { width: 100%; }
+
+/* Desktop: imagem dos painéis maior, mais alta e à esquerda; texto mais
+   abaixo e maior. (No mobile nada muda — a linha vira coluna única.) */
+@media (min-width: 761px) {
+  .lp-band-gestao .lp-feature-row {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: start;
+  }
+  .lp-band-gestao .lp-media-cutout img {
+    width: 118%;
+    max-width: none;
+    margin-left: -17%;
+    margin-top: -9vh;
+  }
+  .lp-band-gestao .lp-copy { margin-top: 22vh; position: relative; z-index: 1; padding-left: 14px; }
+  .lp-band-gestao .lp-copy h3 { font-size: clamp(2rem, 3.6vw, 2.8rem); }
+  .lp-band-gestao .lp-copy p { font-size: 20px; }
+}
+
+/* Seções estáticas após a animação (fluxo normal do site, igual ao
+   lp.querotreinar.com: fundos, recortes diagonais e cores copiados). */
+.lp-static {
+  position: relative;
+  z-index: 30;
+  background: #ececee repeating-linear-gradient(45deg, #f1f1f2 0 52px, #e4e4e6 52px 104px);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  padding: 90px 0 11vw;
+}
+.lp-static .lp-section-title { color: #1d1d1f; }
+.lp-static .lp-section-title .accent { color: #65783e; }
+.lp-static .lp-ia-sub { color: #3f3f42; }
+.lp-static .lp-aluno .lp-copy h2 { color: #1d1d1f; }
+.lp-static .lp-aluno .lp-copy p { color: #3f3f42; }
+
+/* Recursos — fundo listrado diagonal */
+#more {
+  position: relative;
+  z-index: 20;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181818 36px 72px);
+  margin-top: -5vw;
+  padding: 15vw 0 10vw;
+}
+#more .title {
+  color: #74ec5a;
+  width: 75vw;
+  margin: 0 auto 1.5em;
+  font-family: "Alfa Slab One", serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+#more .subtitle { color: #fff; text-align: center; width: 75vw; margin: 0 auto 0.45em; font-size: 24px; font-weight: 600; line-height: 1.2; }
+#more .apoio { color: #ffffff9e; text-align: center; width: 75vw; max-width: 760px; margin: 0 auto 2.4em; font-size: 18px; font-weight: 300; line-height: 1.5; }
+#more ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: space-between; width: 75vw; margin: 0 auto; }
+#more ul li { display: flex; flex-wrap: nowrap; width: 35vw; margin-bottom: 1.5em; }
+#more .recurso-icon { display: block; width: 62px; min-width: 62px; height: 62px; margin-right: 14px; border-radius: 14px; }
+#more h4 { color: #fff; font-size: 24px; font-weight: 600; line-height: 1.1; }
+#more ul p { color: #fff9; font-size: 18px; font-weight: 300; line-height: 1.4; margin-top: 4px; }
+@media (max-width: 500px) {
+  #more .title, #more .subtitle, #more .apoio { width: 90vw; }
+  #more ul { flex-flow: column; width: 90vw; }
+  #more ul li { width: auto; }
+  #more .recurso-icon { width: 54px; min-width: 54px; height: 54px; margin-right: 12px; }
+  #more h4 { font-size: 21px; }
+  #more ul p { font-size: 16px; }
+}
+
+/* Marca própria — degradê escuro */
+#themes {
+  position: relative;
+  z-index: 10;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  background: #ececee repeating-linear-gradient(45deg, #f1f1f2 0 52px, #e4e4e6 52px 104px);
+  margin-top: -5vw;
+  padding: 15vw 0 12vw;
+}
+#themes .marca-title {
+  text-align: center;
+  color: #1d1d1f;
+  max-width: 1000px;
+  margin: 0 auto 1em;
+  padding: 0 20px;
+  font-family: "Alfa Slab One", serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1.12;
+}
+#themes .colagem { display: block; border-radius: 16px; width: min(900px, 92vw); height: auto; margin: 0 auto 3em; box-shadow: 0 24px 70px #0009; }
+#themes > div { text-align: center; max-width: 640px; margin: 0 auto; padding: 0 20px; }
+#themes h3 { color: #1d1d1f; margin-bottom: 0.6em; font-family: "Alfa Slab One", serif; font-size: 28px; font-weight: 400; line-height: 1.1; }
+#themes .wizard { display: block; border-radius: 12px; width: 100%; max-width: 520px; height: auto; margin: 1.3em auto; box-shadow: 0 16px 50px #0000008c; }
+#themes p { color: #4a4a4e; margin-bottom: 1.4em; font-size: 21px; font-weight: 300; line-height: 1.4; }
+@media (max-width: 700px) { #themes .marca-title { font-size: 30px; } }
+
+/* Placa "Teste grátis" — botão para querotreinar.com/contratar, montada
+   na divisa diagonal: metade sobre o listrado claro, metade sobre o verde. */
+.teste-badge-wrap {
+  position: relative;
+  z-index: 40;
+  height: 0;
+}
+.teste-badge {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, calc(-50% - 2.5vw));
+  width: min(180px, 34vw);
+  display: block;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.35));
+}
+.teste-badge img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.18s ease;
+}
+.teste-badge:hover img { transform: translateY(-5px) scale(1.04); }
+.teste-badge:active img { transform: scale(0.99); }
+
+/* Convite final — arte verde de fundo */
+.lp-convite {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  background: url(../images/convite-bg-desktop.png) 50% / cover no-repeat;
+  margin-top: -5vw;
+  padding: 16vw 20px 90px;
+}
+@media (max-width: 700px) {
+  .lp-convite { background-image: url(../images/convite-bg-mobile.png); padding: 26vw 16px 70px; }
+}
+@media (max-width: 500px) { .lp-convite { padding-bottom: 50px; } }
+.final-cta .convite-logo { display: block; filter: drop-shadow(0 6px 20px #00000059); width: 210px; max-width: 56%; height: auto; margin: 0 auto 22px; }
+.final-cta .cta-title {
+  color: #fff;
+  text-shadow: 0 2px 12px #0000004d;
+  margin-bottom: 0.5em;
+  padding: 0 20px;
+  font-family: "Alfa Slab One", serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+.final-cta .cta-text { color: #f3f6ec; text-shadow: 0 1px 8px #00000047; max-width: 620px; margin: 0 auto 1.3em; padding: 0 20px; font-size: 20px; font-weight: 300; line-height: 1.45; }
+.final-cta .actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 500px) {
+  .final-cta .cta-title { font-size: 28px; }
+  .final-cta .convite-logo { width: 160px; }
+}
+
+/* Rodapé global */
+#globalfooter { position: relative; z-index: 4; text-align: center; background: #111; padding: 4em 0 0; font-size: 20px; line-height: 1.5; }
+#globalfooter a.logo { display: inline-block; margin-bottom: 1.3em; }
+#globalfooter .brandmark {
+  letter-spacing: -0.01em;
+  background: linear-gradient(#ede8d6, #b9c79a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 30px;
+  font-weight: 800;
+}
+#globalfooter h2 { color: #ccc; max-width: 59.5vw; margin: 0 auto 1.7em; font-size: 1em; font-weight: 400; line-height: 1.7; }
+#globalfooter .cols { list-style: none; display: flex; justify-content: space-around; text-align: left; max-width: 900px; margin: 0 auto 1.6em; }
+#globalfooter h3 { color: #9db36f; margin-bottom: 0; font-size: 1em; font-weight: 600; line-height: 1.7; }
+#globalfooter .cols ul { list-style: none; }
+#globalfooter .cols ul a { color: #999; display: inline-block; transition: all 0.1s ease-in-out; }
+#globalfooter .cols ul a:hover { color: #fff; transform: scale(1.1); }
+#globalfooter .copyright { color: #666; padding-bottom: 20px; font-size: 0.8em; }
+@media (max-width: 700px) {
+  #globalfooter .cols { flex-direction: column; text-align: center; }
+  #globalfooter .cols ul { margin-bottom: 2em; }
+  #globalfooter h2 { max-width: none; }
+}
+
+.lp-desafios-phones {
+  margin-top: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(18px, 5vw, 60px);
+}
+.lp-desafios-phones img {
+  width: min(310px, 42%);
+  height: auto;
+  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55)) drop-shadow(0 46px 90px rgba(0, 0, 0, 0.5));
+}
+.lp-desafios-phones img:last-child { margin-top: 9vh; }
+
+.rotate-hint {
+  display: none;
+  margin-top: 8px;
+  color: var(--lp-dim);
+  font-size: 13px;
+}
+@media (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  .rotate-hint { display: block; }
+}
+
+/* ---------- Voz com IA ---------- */
+
+.lp-voz { text-align: center; }
+.voz-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 40px;
+  background: var(--lp-violet);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+.lp-voz h2 {
+  margin-top: 16px;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+.voz-player { position: relative; max-width: 720px; margin: 28px auto 0; }
+.voz-player video { width: 100%; border-radius: 14px; }
+.voz-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 84px;
+  height: 84px;
+  border: 0;
+  border-radius: 50%;
+  background: color-mix(in srgb, #05050b 65%, transparent);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 30px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.voz-play:hover { transform: scale(1.08); background: var(--lp-violet); }
+.voz-caption { margin-top: 16px; color: var(--lp-silver); font-size: 18px; }
+
+/* ---------- Seção título geral ---------- */
+
+.lp-section-title {
+  text-align: center;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(28px, 5vw, 48px);
+}
+.lp-section-title .accent { color: var(--lp-green-link); font-weight: 600; }
+
+/* ---------- Nutri IA / Como o aluno vê ---------- */
+
+.lp-ia-sub {
+  max-width: 720px;
+  margin: 0 auto 14px;
+  text-align: center;
+  color: var(--lp-smoke);
+}
+.lp-ia-video { max-width: 820px; margin: 24px auto 0; }
+.lp-ia-video video { width: 100%; border-radius: 14px; }
+
+.lp-aluno {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 44px);
+  align-items: center;
+  margin-top: 8vh;
+}
+@media (max-width: 760px) { .lp-aluno { grid-template-columns: 1fr; } }
+.lp-aluno .lp-copy h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  font-weight: 300;
+  margin-bottom: 14px;
+}
+.lp-aluno .lp-copy p { margin-bottom: 12px; color: var(--lp-smoke); }
+.lp-aluno-shot { position: relative; }
+.lp-aluno-shot img { border-radius: 14px; cursor: zoom-in; }
+.aluno-cta {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 40px;
+  background: var(--lp-violet);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.aluno-cta:hover { background: var(--lp-glow); color: #05050b; }
+
+/* Lightbox */
+.lp-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, #05050b 88%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  cursor: zoom-out;
+}
+.lp-lightbox.open { display: flex; }
+.lp-lightbox img { max-height: 92vh; width: auto; max-width: 96vw; border-radius: 12px; }
+
+/* ---------- Recursos (grade de 8) ---------- */
+
+.lp-recursos-head { text-align: center; margin-bottom: clamp(28px, 5vw, 44px); }
+.lp-recursos-head h3 {
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  font-weight: 300;
+}
+.lp-recursos-head .subtitle { margin-top: 10px; color: var(--lp-silver); font-size: 19px; }
+.lp-recursos-head .apoio { margin-top: 6px; color: var(--lp-dim); }
+
+.lp-recursos-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px 22px;
+}
+@media (max-width: 700px) { .lp-recursos-grid { grid-template-columns: 1fr; } }
+.lp-recursos-grid li { display: flex; gap: 16px; align-items: flex-start; }
+.recurso-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.lp-recursos-grid h4 { font-size: 19px; font-weight: 600; }
+.lp-recursos-grid p { color: var(--lp-dim); font-size: 15.5px; margin-top: 2px; }
+
+/* ---------- Marca própria ---------- */
+
+.lp-marca { text-align: center; }
+.lp-marca .lp-marca-video { max-width: 860px; margin: 0 auto; }
+.lp-marca .lp-marca-video video { width: 100%; border-radius: 14px; }
+.lp-marca h3 { margin-top: 36px; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600; }
+.lp-marca .wizard { max-width: 520px; margin: 22px auto; border-radius: 14px; }
+.lp-marca p { max-width: 640px; margin: 0 auto; color: var(--lp-smoke); }
+.lp-marca .button { margin-top: 26px; }
+
+/* ---------- Convite final ---------- */
+
+.lp-convite { text-align: center; }
+.lp-convite .convite-logo { width: min(280px, 60vw); margin: 0 auto 24px; }
+.lp-convite h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 300; }
+.lp-convite p { max-width: 640px; margin: 16px auto 0; color: var(--lp-smoke); }
+
+/* ---------- Rodapé global ---------- */
+
+.lp-footer {
+  position: relative;
+  z-index: 3;
+  background: #111;
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+.lp-footer .brandmark {
+  font-size: 28px;
+  font-weight: 700;
+  background: linear-gradient(#ede8d6, #b9c79a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.lp-footer h2 {
+  color: var(--lp-silver);
+  font-size: 18px;
+  font-weight: 400;
+  margin: 14px auto 36px;
+}
+.lp-footer-cols {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px 80px;
+  text-align: left;
+}
+.lp-footer-cols h3 { color: var(--lp-green-link); font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+.lp-footer-cols ul { list-style: none; }
+.lp-footer-cols ul li { margin-bottom: 6px; }
+.lp-footer-cols ul a { color: var(--lp-dim); font-size: 15px; }
+.lp-footer-cols ul a:hover { color: var(--lp-green-link); }
+.lp-footer .copyright { margin-top: 44px; color: #666; font-size: 14px; }
