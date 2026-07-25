@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat:wght@600;700&family=Outfit:wght@400;600&display=swap"/>
 <link rel="stylesheet" href="assets/scroll-scrub.css"/>
-<link rel="stylesheet" href="assets/lp.css?v=16"/>
+<link rel="stylesheet" href="assets/lp.css?v=17"/>
 <title>Quero Treinar — Saúde manda em tudo</title>
 <meta name="description" content="O app de treino e dieta com a sua marca. Do primeiro treino ao pagamento. Para Personal Trainers e Nutricionistas."/>
 <meta name="keywords" content="app de treino,app de dieta,personal trainer,nutricionista,treino com vídeo,dieta TACO,anamnese,gamificação,white label,app com a sua marca,pagamentos,PIX,acompanhamento"/>
@@ -269,21 +269,94 @@
 </section>
 
 <div class="lp-lightbox" id="lp-lightbox" role="dialog" aria-label="Imagem ampliada">
-  <img src="images/aluno-ve.png" alt="Telas do app do aluno ampliadas"/>
+  <button type="button" class="lp-lightbox-close" aria-label="Fechar">✕</button>
+  <img src="" alt=""/>
 </div>
 
 </main>
 <script>
+/* Lightbox com zoom: toque numa imagem para abrir; pinça com os dedos para
+   ampliar, arraste para mover, duplo-toque alterna o zoom, roda do mouse no
+   desktop. Fecha no ✕, no fundo ou com Esc. */
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
     var box = document.getElementById("lp-lightbox");
     if (!box) return;
-    document.querySelectorAll(".aluno-cta, .aluno-img").forEach(function (el) {
-      el.addEventListener("click", function () { box.classList.add("open"); });
+    var img = box.querySelector("img");
+    var closeBtn = box.querySelector(".lp-lightbox-close");
+    var scale = 1, tx = 0, ty = 0;
+    var startDist = 0, startScale = 1, startX = 0, startY = 0, startTx = 0, startTy = 0, lastTap = 0;
+
+    function apply() {
+      img.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
+    }
+    function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+    function open(src, alt) {
+      img.src = src; img.alt = alt || "";
+      reset();
+      box.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      box.classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    var sel = ".lp-media img, .lp-screenshots img, .lp-desafios-card img, " +
+      ".lp-desafios-aluno img, .lp-desafios-phones img, .lp-aluno-shot img, #themes .wizard";
+    document.querySelectorAll(sel).forEach(function (el) {
+      el.classList.add("lp-zoomable");
+      el.addEventListener("click", function () { open(el.currentSrc || el.src, el.alt); });
     });
-    box.addEventListener("click", function () { box.classList.remove("open"); });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") box.classList.remove("open");
+    var alunoBtn = document.querySelector(".aluno-cta");
+    if (alunoBtn) {
+      alunoBtn.addEventListener("click", function () {
+        var im = document.querySelector(".aluno-img");
+        if (im) open(im.currentSrc || im.src, im.alt);
+      });
+    }
+
+    closeBtn.addEventListener("click", close);
+    box.addEventListener("click", function (e) { if (e.target === box) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+
+    box.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      scale = Math.min(6, Math.max(1, scale * (e.deltaY < 0 ? 1.15 : 0.87)));
+      if (scale === 1) { tx = 0; ty = 0; }
+      apply();
+    }, { passive: false });
+
+    function dist(t) {
+      return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+    }
+    box.addEventListener("touchstart", function (e) {
+      if (e.touches.length === 2) {
+        startDist = dist(e.touches);
+        startScale = scale;
+      } else if (e.touches.length === 1) {
+        startX = e.touches[0].clientX; startY = e.touches[0].clientY;
+        startTx = tx; startTy = ty;
+        var now = Date.now();
+        if (now - lastTap < 300) {
+          if (scale > 1) { reset(); } else { scale = 2.5; apply(); }
+        }
+        lastTap = now;
+      }
+    }, { passive: true });
+    box.addEventListener("touchmove", function (e) {
+      e.preventDefault();
+      if (e.touches.length === 2) {
+        scale = Math.min(6, Math.max(1, startScale * dist(e.touches) / startDist));
+        apply();
+      } else if (e.touches.length === 1 && scale > 1) {
+        tx = startTx + (e.touches[0].clientX - startX);
+        ty = startTy + (e.touches[0].clientY - startY);
+        apply();
+      }
+    }, { passive: false });
+    box.addEventListener("touchend", function () {
+      if (scale === 1) { tx = 0; ty = 0; apply(); }
     });
   });
 })();
