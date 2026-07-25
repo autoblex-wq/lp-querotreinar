@@ -203,6 +203,10 @@ a:hover { color: var(--lp-glow); }
 @media (max-width: 760px) {
   .lp-feature-row, .lp-feature-row.reverse { grid-template-columns: 1fr; }
   .lp-feature-row.reverse .lp-media { order: 0; }
+  /* Montagem de treinos, Montagem com IA e Vincule-se a um Personal:
+     no celular, texto antes do vídeo/imagem */
+  #treinos .lp-feature-row .lp-copy,
+  #nutricao .lp-feature-row.reverse .lp-copy { order: -1; margin-bottom: 16px; }
 }
 .lp-media video, .lp-media img { width: 100%; border-radius: 14px; }
 .lp-copy h3 {
