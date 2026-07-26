@@ -409,12 +409,12 @@ a:hover { color: var(--lp-glow); }
   position: relative;
   z-index: 5;
   text-align: center;
-  background: url(../images/convite-bg-desktop.png) 50% / cover no-repeat;
+  background: url(../images/convite-bg-desktop.webp) 50% / cover no-repeat;
   margin-top: -5vw;
   padding: 16vw 20px 90px;
 }
 @media (max-width: 700px) {
-  .lp-convite { background-image: url(../images/convite-bg-mobile.png); padding: 26vw 16px 70px; }
+  .lp-convite { background-image: url(../images/convite-bg-mobile.webp); padding: 26vw 16px 70px; }
 }
 @media (max-width: 500px) { .lp-convite { padding-bottom: 50px; } }
 .final-cta .convite-logo { display: block; filter: drop-shadow(0 6px 20px #00000059); width: 210px; max-width: 56%; height: auto; margin: 0 auto 22px; }
