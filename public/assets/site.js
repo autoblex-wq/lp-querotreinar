@@ -192,7 +192,10 @@
         if (!it.visible && Math.abs(it.current - it.target) < 0.002) return;
         it.current += (it.target - it.current) * 0.2;
         var t = clamp(it.current, 0, 0.999) * (v.duration || 1);
-        var eps = isMobile() ? 0.02 : 0.008;
+        // Encaixa no grid de quadros (24 fps): buscas sub-quadro são inúteis
+        // e caras — no máximo uma busca por quadro novo.
+        t = Math.round(t * 24) / 24;
+        var eps = isMobile() ? 0.042 : 0.02;
         if (Math.abs(v.currentTime - t) > eps) {
           try { v.currentTime = t; } catch (e) {}
         }

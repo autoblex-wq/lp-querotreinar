@@ -178,7 +178,7 @@ a:hover { color: var(--lp-glow); }
   width: min(760px, 88%);
   height: auto;
   margin: 0 auto;
-  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.5)) drop-shadow(0 60px 110px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 34px 60px rgba(0, 0, 0, 0.55));
 }
 .lp-shot-phone {
   position: absolute;
@@ -186,7 +186,7 @@ a:hover { color: var(--lp-glow); }
   bottom: -8%;
   width: clamp(120px, 22%, 230px);
   height: auto;
-  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55)) drop-shadow(0 46px 90px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.55));
 }
 
 /* ---------- Faixas de vídeo + texto (mastodon) ---------- */
@@ -227,7 +227,7 @@ a:hover { color: var(--lp-glow); }
 .lp-desafios-card img {
   width: min(900px, 94%);
   margin: 0 auto;
-  filter: drop-shadow(0 20px 36px rgba(0, 0, 0, 0.5)) drop-shadow(0 50px 100px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 30px 56px rgba(0, 0, 0, 0.52));
 }
 .lp-desafios-aluno {
   margin-top: 7vh;
@@ -260,13 +260,13 @@ a:hover { color: var(--lp-glow); }
 .lp-desafios-aluno img {
   width: min(660px, 86%);
   margin: 0 auto;
-  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.5)) drop-shadow(0 44px 90px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.52));
 }
 
 .lp-media-cutout img {
   box-shadow: none !important;
   border-radius: 0;
-  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.5)) drop-shadow(0 44px 90px rgba(0, 0, 0, 0.55));
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.55));
 }
 
 /* Gestão: o card fica fixo em tela (sticky) enquanto o vídeo avança até o
@@ -471,7 +471,7 @@ a:hover { color: var(--lp-glow); }
 .lp-desafios-phones img {
   width: min(310px, 42%);
   height: auto;
-  filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55)) drop-shadow(0 46px 90px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.55));
 }
 .lp-desafios-phones img:last-child { margin-top: 9vh; }
 
