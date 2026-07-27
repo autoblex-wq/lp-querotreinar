@@ -196,15 +196,25 @@
           it.pin.style.opacity = String(text);
           it.pin.style.transform = "translateY(" + (1 - text) * 20 + "px)";
         }
-        if (s > it.start - 1.5 * vh && s < it.end + 1.5 * vh) load(it);
-        else if (it.video && (s < it.start - 2.5 * vh || s > it.end + 2.5 * vh)) detach(it);
       });
-      // Teto rígido: no máximo 3 vídeos anexados — solta os mais distantes.
-      var attached = items.filter(function (x) { return x.video; });
-      if (attached.length > 3) {
-        attached.sort(function (a, b) { return a.dist - b.dist; });
-        for (var k = 3; k < attached.length; k++) detach(attached[k]);
-      }
+      /* Gestão dos elementos de vídeo: só as 3 cenas mais próximas ganham
+         vídeo; as demais soltam o elemento (o blob fica em memória). O
+         conjunto é estável — quem não está no top-3 nem tenta carregar,
+         evitando o loop anexa/solta que piscava o fundo no celular. */
+      var near = items
+        .filter(function (x) { return x.dist < 1.5 * vh; })
+        .sort(function (a, b) { return a.dist - b.dist; })
+        .slice(0, 3);
+      var attachedCount = 0;
+      items.forEach(function (x) { if (x.video) attachedCount++; });
+      items.forEach(function (x) {
+        if (near.indexOf(x) !== -1) {
+          load(x);
+        } else if (x.video && (x.dist > 2.2 * vh || attachedCount > 3)) {
+          detach(x);
+          attachedCount--;
+        }
+      });
       if (activeIdx !== active) {
         active = activeIdx;
         section.dataset.activeSection = String(active);
