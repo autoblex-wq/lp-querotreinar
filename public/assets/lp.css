@@ -91,6 +91,20 @@ a:hover { color: var(--lp-glow); }
 .scroll-scrub__poster,
 .scroll-scrub__video { filter: brightness(0.55) saturate(0.85); }
 
+/* Celular: o escurecimento já vem assado nos vídeos/pôsteres mobile — sem
+   filtro por quadro; menu sem blur; sombra de texto leve. Mesmo visual,
+   muito mais leve para a GPU do celular. */
+@media (hover: none) and (pointer: coarse), (max-width: 860px) {
+  .scroll-scrub__poster,
+  .scroll-scrub__video { filter: none; }
+  .scroll-scrub__route {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(5, 5, 11, 0.9) !important;
+  }
+  .lp-band { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+}
+
 .scroll-scrub__story .lp-band { pointer-events: auto; }
 
 .scroll-scrub__progress {
