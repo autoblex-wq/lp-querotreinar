@@ -89,9 +89,61 @@
       dirty = true;
     };
 
+    var createVideo = function (it, url, source) {
+      var v = document.createElement("video");
+      v.className = "scroll-scrub__video";
+      v.muted = true;
+      v.playsInline = true;
+      v.preload = "auto";
+      v.setAttribute("muted", "");
+      v.setAttribute("playsinline", "");
+      v.src = url;
+      v.addEventListener("loadedmetadata", function () {
+        if (it.video !== v || it.loadedSource !== source) return;
+        it.ready = true;
+        it.loading = false;
+        it.current = it.target;
+        try { v.currentTime = clamp(it.current, 0, 0.999) * (v.duration || 1); } catch (e) {}
+        if (unlocked && isMobile()) { v.play().then(function () { v.pause(); }).catch(function () {}); }
+      }, { once: true });
+      v.addEventListener("seeked", function () {
+        if (it.video === v && it.loadedSource === source) it.layer.dataset.videoPainted = "true";
+      }, { once: true });
+      v.addEventListener("error", function () {
+        if (it.video !== v) return;
+        v.remove();
+        URL.revokeObjectURL(url);
+        it.video = null; it.objectUrl = null;
+        it.failed = true; it.loading = false; it.ready = false;
+        delete it.layer.dataset.videoPainted;
+        it.layer.dataset.videoFailed = "true";
+      }, { once: true });
+      it.layer.appendChild(v);
+      it.video = v;
+    };
+
+    /* Solta o ELEMENTO de vídeo de cenas distantes (o download fica guardado
+       no blob). Celulares limitam quantos vídeos podem decodificar ao mesmo
+       tempo — passar do limite deixa a camada preta. Assim, no máximo 2-3
+       vídeos ficam ativos; os demais mostram o pôster até se aproximarem. */
+    var detach = function (it) {
+      if (!it.video) return;
+      it.video.remove();
+      it.video = null;
+      it.ready = false;
+      it.loading = false;
+      it.current = it.target;
+      delete it.layer.dataset.videoPainted;
+    };
+
     var load = function (it) {
       var source = srcFor(it);
-      if (reduced || it.loading || it.ready || it.failed || !source) return;
+      if (reduced || it.loading || it.video || it.failed || !source) return;
+      if (it.objectUrl && it.loadedSource === source) {
+        it.loading = true;
+        createVideo(it, it.objectUrl, source);
+        return;
+      }
       it.loading = true;
       it.loadedSource = source;
       it.abort = new AbortController();
@@ -104,37 +156,8 @@
         .then(function (blob) {
           if (ctrl.signal.aborted || it.loadedSource !== source) return;
           var url = URL.createObjectURL(blob);
-          var v = document.createElement("video");
-          v.className = "scroll-scrub__video";
-          v.muted = true;
-          v.playsInline = true;
-          v.preload = "auto";
-          v.setAttribute("muted", "");
-          v.setAttribute("playsinline", "");
-          v.src = url;
-          v.addEventListener("loadedmetadata", function () {
-            if (it.video !== v || it.loadedSource !== source) return;
-            it.ready = true;
-            it.loading = false;
-            it.current = it.target;
-            try { v.currentTime = clamp(it.current, 0, 0.999) * (v.duration || 1); } catch (e) {}
-            if (unlocked && isMobile()) { v.play().then(function () { v.pause(); }).catch(function () {}); }
-          }, { once: true });
-          v.addEventListener("seeked", function () {
-            if (it.video === v && it.loadedSource === source) it.layer.dataset.videoPainted = "true";
-          }, { once: true });
-          v.addEventListener("error", function () {
-            if (it.video !== v) return;
-            v.remove();
-            URL.revokeObjectURL(url);
-            it.video = null; it.objectUrl = null;
-            it.failed = true; it.loading = false; it.ready = false;
-            delete it.layer.dataset.videoPainted;
-            it.layer.dataset.videoFailed = "true";
-          }, { once: true });
-          it.layer.appendChild(v);
           it.objectUrl = url;
-          it.video = v;
+          createVideo(it, url, source);
         })
         .catch(function (err) {
           if (ctrl.signal.aborted || (err && err.name === "AbortError") || it.loadedSource !== source) return;
@@ -161,6 +184,7 @@
         if (s < it.start) dist = it.start - s;
         if (s > it.end) dist = s - it.end;
         var opacity = smoothstep(1 - dist / Math.max(fade, 1));
+        it.dist = dist;
         if (reduced) opacity = dist === 0 ? 1 : 0;
         it.visible = opacity > 0.001;
         it.layer.style.opacity = String(opacity);
@@ -173,7 +197,14 @@
           it.pin.style.transform = "translateY(" + (1 - text) * 20 + "px)";
         }
         if (s > it.start - 1.5 * vh && s < it.end + 1.5 * vh) load(it);
+        else if (it.video && (s < it.start - 2.5 * vh || s > it.end + 2.5 * vh)) detach(it);
       });
+      // Teto rígido: no máximo 3 vídeos anexados — solta os mais distantes.
+      var attached = items.filter(function (x) { return x.video; });
+      if (attached.length > 3) {
+        attached.sort(function (a, b) { return a.dist - b.dist; });
+        for (var k = 3; k < attached.length; k++) detach(attached[k]);
+      }
       if (activeIdx !== active) {
         active = activeIdx;
         section.dataset.activeSection = String(active);
