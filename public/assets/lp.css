@@ -741,3 +741,15 @@ a:hover { color: var(--lp-glow); }
     background: rgba(5, 5, 11, 0.97);
   }
 }
+
+/* ---------- Revelações (Anime.js) ----------
+   Só o herói precisa de estado inicial no CSS: ele já está na tela quando a
+   página abre, então esconder por JS causaria um piscar. O resto é escondido
+   pelo reveal.js bem antes de entrar em cena. A classe .qt-anim é ligada no
+   <head> e removida se o JS/biblioteca não estiverem disponíveis. */
+.qt-anim .lp-hero .lp-logo,
+.qt-anim .lp-hero h2,
+.qt-anim .lp-hero > .lp-panel > p,
+.qt-anim .lp-hero .lp-actions .btn,
+.qt-anim .lp-shot-notebook,
+.qt-anim .lp-shot-phone { opacity: 0; }
