@@ -88,21 +88,17 @@ a:hover { color: var(--lp-glow); }
 
 /* ---------- Scroll-scrub: ajustes p/ background de página inteira ---------- */
 
-.scroll-scrub__poster,
-.scroll-scrub__video { filter: brightness(0.55) saturate(0.85); }
-
-/* Celular: o escurecimento já vem assado nos vídeos/pôsteres mobile — sem
-   filtro por quadro; menu sem blur; sombra de texto leve. Mesmo visual,
-   muito mais leve para a GPU do celular. */
-@media (hover: none) and (pointer: coarse), (max-width: 860px) {
-  .scroll-scrub__poster,
-  .scroll-scrub__video { filter: none; }
-  .scroll-scrub__route {
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    background: rgba(5, 5, 11, 0.9) !important;
-  }
-  .lp-band { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7); }
+/* Escurecimento por SCRIM, não por filter. Uma camada preta a 45% dá
+   exatamente o mesmo resultado que brightness(0.55) — c*(1-0.45) = c*0.55 —
+   mas é um retângulo sólido composto pela GPU, em vez de um filtro
+   reprocessado a cada quadro sobre um vídeo em tela cheia (o que tira o
+   vídeo do caminho de overlay de hardware no iOS). */
+.scroll-scrub__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
 }
 
 .scroll-scrub__story .lp-band { pointer-events: auto; }
@@ -721,3 +717,27 @@ a:hover { color: var(--lp-glow); }
 .lp-footer-cols ul a { color: var(--lp-dim); font-size: 15px; }
 .lp-footer-cols ul a:hover { color: var(--lp-green-link); }
 .lp-footer .copyright { margin-top: 44px; color: #666; font-size: 14px; }
+
+/* ---------- Ajustes de celular (no fim do arquivo para vencerem as regras
+   base sem !important) ---------- */
+
+@media (hover: none) and (pointer: coarse), (max-width: 860px) {
+  /* Sombra de texto leve: o blur de 26px da regra base é caro quando
+     repintado sobre o vídeo em movimento. */
+  .lp-band { text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75); }
+
+  /* Menu flutuante sem backdrop-blur (recalculado sobre o vídeo a cada
+     quadro no celular). */
+  .scroll-scrub__route {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(5, 5, 11, 0.92);
+  }
+
+  /* Lightbox: fundo sólido em vez de blur em tela cheia sobre o vídeo. */
+  .lp-lightbox {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(5, 5, 11, 0.97);
+  }
+}

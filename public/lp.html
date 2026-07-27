@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Caveat:wght@600;700&family=Outfit:wght@400;600&display=swap"/>
 <link rel="stylesheet" href="assets/scroll-scrub.css"/>
-<link rel="stylesheet" href="assets/lp.css?v=20"/>
+<link rel="stylesheet" href="assets/lp.css?v=22"/>
 <title>Quero Treinar — Saúde manda em tudo</title>
 <meta name="description" content="O app de treino e dieta com a sua marca. Do primeiro treino ao pagamento. Para Personal Trainers e Nutricionistas."/>
 <meta name="keywords" content="app de treino,app de dieta,personal trainer,nutricionista,treino com vídeo,dieta TACO,anamnese,gamificação,white label,app com a sua marca,pagamentos,PIX,acompanhamento"/>
@@ -36,6 +36,7 @@
       <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap4-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap4-poster.jpg"/></picture></figure>
       <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap4-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap4-poster.jpg"/></picture></figure>
     </div>
+    <div aria-hidden="true" class="scroll-scrub__scrim"></div>
   </div>
   <div aria-hidden="true" class="scroll-scrub__progress"><span></span></div>
   <nav aria-label="Seções" class="scroll-scrub__route">
@@ -293,15 +294,34 @@
       img.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + scale + ")";
     }
     function reset() { scale = 1; tx = 0; ty = 0; apply(); }
+    var lockedY = 0;
     function open(src, alt) {
       img.src = src; img.alt = alt || "";
       reset();
       box.classList.add("open");
-      document.body.style.overflow = "hidden";
+      // Trava de rolagem que funciona no iOS (overflow:hidden no body não é
+      // confiável lá e faz a página "pular").
+      lockedY = window.scrollY || window.pageYOffset;
+      document.body.style.position = "fixed";
+      document.body.style.top = -lockedY + "px";
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      window.__qtScrubPaused = true;
     }
     function close() {
+      if (!box.classList.contains("open")) return;
       box.classList.remove("open");
-      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      // Volta instantânea (o scroll suave da página animaria o retorno).
+      var html = document.documentElement;
+      var prev = html.style.scrollBehavior;
+      html.style.scrollBehavior = "auto";
+      window.scrollTo(0, lockedY);
+      html.style.scrollBehavior = prev;
+      window.__qtScrubPaused = false;
     }
 
     var sel = ".lp-media img, .lp-screenshots img, .lp-desafios-card img, " +
@@ -319,8 +339,14 @@
     }
 
     closeBtn.addEventListener("click", close);
-    box.addEventListener("click", function (e) { if (e.target === box) close(); });
+    // Toque/clique simples fecha (inclusive na imagem, quando sem zoom).
+    box.addEventListener("click", function (e) {
+      if (e.target === box || (e.target === img && scale === 1)) close();
+    });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    // Nunca deixar a página travada se a aba sair ou o usuário voltar.
+    window.addEventListener("pagehide", close);
+    window.addEventListener("popstate", close);
 
     box.addEventListener("wheel", function (e) {
       e.preventDefault();
@@ -376,6 +402,6 @@ window.QT_SCENES = [
   { clip: "assets/world/cap4.mp4", mobileClip: "assets/world/cap4-mobile.mp4", linger: 0, from: 0.15, to: 1.72 },
 ];
 </script>
-<script src="assets/site.js?v=6"></script>
+<script src="assets/site.js?v=7"></script>
 </body>
 </html>

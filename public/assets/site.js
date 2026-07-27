@@ -89,7 +89,14 @@
       dirty = true;
     };
 
-    var createVideo = function (it, url, source) {
+    /* UM elemento <video> por cena, criado uma única vez e mantido no DOM.
+       Recriar elementos vaza slots de decodificador no iOS (o recurso só é
+       liberado no GC) — quando o orçamento acaba, vídeos novos nunca ficam
+       prontos e a animação congela de vez. Aqui o elemento é reaproveitado:
+       anexar = atribuir src; soltar = removeAttribute('src') + load(), que
+       libera o decodificador na hora e preserva o "desbloqueio" por gesto. */
+    var elementFor = function (it) {
+      if (it.el) return it.el;
       var v = document.createElement("video");
       v.className = "scroll-scrub__video";
       v.muted = true;
@@ -97,51 +104,66 @@
       v.preload = "auto";
       v.setAttribute("muted", "");
       v.setAttribute("playsinline", "");
-      v.src = url;
-      v.addEventListener("loadedmetadata", function () {
-        if (it.video !== v || it.loadedSource !== source) return;
+      v.addEventListener("loadeddata", function () {
+        if (it.video !== v) return;
         it.ready = true;
         it.loading = false;
         it.current = it.target;
-        try { v.currentTime = clamp(it.current, 0, 0.999) * (v.duration || 1); } catch (e) {}
-        if (unlocked && isMobile()) { v.play().then(function () { v.pause(); }).catch(function () {}); }
-      }, { once: true });
+        // Aquecimento (play/pause) só depois do primeiro toque e com o
+        // primeiro quadro já decodificável — como no motor original.
+        if (unlocked && isMobile()) {
+          v.play().then(function () { v.pause(); }).catch(function () {});
+        }
+      });
       v.addEventListener("seeked", function () {
-        if (it.video === v && it.loadedSource === source) it.layer.dataset.videoPainted = "true";
-      }, { once: true });
+        if (it.video === v) it.layer.dataset.videoPainted = "true";
+      });
       v.addEventListener("error", function () {
-        if (it.video !== v) return;
-        v.remove();
-        URL.revokeObjectURL(url);
-        it.video = null; it.objectUrl = null;
-        it.failed = true; it.loading = false; it.ready = false;
+        // Sem src é o erro esperado de quando soltamos a cena: ignorar.
+        if (it.video !== v || !v.getAttribute("src")) return;
+        it.failed = true;
+        it.loading = false;
+        it.ready = false;
+        it.video = null;
         delete it.layer.dataset.videoPainted;
         it.layer.dataset.videoFailed = "true";
-      }, { once: true });
+      });
       it.layer.appendChild(v);
-      it.video = v;
+      it.el = v;
+      return v;
     };
 
-    /* Solta o ELEMENTO de vídeo de cenas distantes (o download fica guardado
-       no blob). Celulares limitam quantos vídeos podem decodificar ao mesmo
-       tempo — passar do limite deixa a camada preta. Assim, no máximo 2-3
-       vídeos ficam ativos; os demais mostram o pôster até se aproximarem. */
+    var attachClip = function (it) {
+      if (it.video || it.failed) return;
+      var v = elementFor(it);
+      it.video = v;
+      it.ready = false;
+      it.loading = true;
+      it.current = it.target;
+      v.src = it.objectUrl;
+      try { v.load(); } catch (e) {}
+    };
+
+    /* Solta a cena: libera o decodificador de verdade (o download continua
+       guardado no blob, então religar é instantâneo e sem rede). */
     var detach = function (it) {
-      if (!it.video) return;
-      it.video.remove();
+      var v = it.video;
+      if (!v) return;
       it.video = null;
       it.ready = false;
       it.loading = false;
       it.current = it.target;
       delete it.layer.dataset.videoPainted;
+      try { v.pause(); } catch (e) {}
+      v.removeAttribute("src");
+      try { v.load(); } catch (e) {}
     };
 
     var load = function (it) {
       var source = srcFor(it);
       if (reduced || it.loading || it.video || it.failed || !source) return;
       if (it.objectUrl && it.loadedSource === source) {
-        it.loading = true;
-        createVideo(it, it.objectUrl, source);
+        attachClip(it);
         return;
       }
       it.loading = true;
@@ -155,9 +177,10 @@
         })
         .then(function (blob) {
           if (ctrl.signal.aborted || it.loadedSource !== source) return;
-          var url = URL.createObjectURL(blob);
-          it.objectUrl = url;
-          createVideo(it, url, source);
+          it.objectUrl = URL.createObjectURL(blob);
+          it.loading = false;
+          // Só anexa se a cena ainda estiver entre as desejadas.
+          if (it.wanted) attachClip(it);
         })
         .catch(function (err) {
           if (ctrl.signal.aborted || (err && err.name === "AbortError") || it.loadedSource !== source) return;
@@ -197,24 +220,26 @@
           it.pin.style.transform = "translateY(" + (1 - text) * 20 + "px)";
         }
       });
-      /* Gestão dos elementos de vídeo: só as 3 cenas mais próximas ganham
-         vídeo; as demais soltam o elemento (o blob fica em memória). O
-         conjunto é estável — quem não está no top-3 nem tenta carregar,
-         evitando o loop anexa/solta que piscava o fundo no celular. */
+      /* Quais cenas ficam com vídeo ativo. No desktop, todas as próximas
+         (como no motor original). No celular, no máximo 3 — o iPhone tem um
+         orçamento pequeno de decodificadores e esta página tem 5 cenas. A
+         seleção é por proximidade e estável: quem não está na lista não
+         carrega, então não existe o vaivém que piscava o fundo. */
+      var limit = isMobile() ? 3 : items.length;
       var near = items
         .filter(function (x) { return x.dist < 1.5 * vh; })
         .sort(function (a, b) { return a.dist - b.dist; })
-        .slice(0, 3);
-      var attachedCount = 0;
-      items.forEach(function (x) { if (x.video) attachedCount++; });
+        .slice(0, limit);
       items.forEach(function (x) {
-        if (near.indexOf(x) !== -1) {
-          load(x);
-        } else if (x.video && (x.dist > 2.2 * vh || attachedCount > 3)) {
-          detach(x);
-          attachedCount--;
-        }
+        x.wanted = near.indexOf(x) !== -1;
+        if (x.wanted) load(x);
       });
+      // Teto real (contado depois das decisões): solta os mais distantes.
+      var attached = items.filter(function (x) { return x.video; });
+      if (attached.length > limit) {
+        attached.sort(function (a, b) { return a.dist - b.dist; });
+        for (var k = limit; k < attached.length; k++) detach(attached[k]);
+      }
       if (activeIdx !== active) {
         active = activeIdx;
         section.dataset.activeSection = String(active);
@@ -233,25 +258,23 @@
         if (!it.visible && Math.abs(it.current - it.target) < 0.002) return;
         it.current += (it.target - it.current) * 0.2;
         var t = clamp(it.current, 0, 0.999) * (v.duration || 1);
-        // Encaixa no grid de quadros (24 fps): buscas sub-quadro são inúteis
-        // e caras — no máximo uma busca por quadro novo. A tolerância precisa
-        // ser MENOR que a duração de um quadro (0,0417s), senão a animação
-        // só atualiza a cada 2 quadros e perde fluidez.
-        t = Math.round(t * 24) / 24;
-        if (Math.abs(v.currentTime - t) > 0.02) {
-          try {
-            // fastSeek (iOS/Firefox) é mais rápido; nos clipes mobile
-            // all-intra todo quadro é keyframe, então é exato também.
-            if (isMobile() && v.fastSeek) v.fastSeek(t);
-            else v.currentTime = t;
-          } catch (e) {}
+        /* Busca sempre por currentTime (preciso). fastSeek NÃO serve aqui:
+           no WebKit ele vira uma busca com tolerância cuja borda é a posição
+           atual, então o iOS pode "resolver" sem mover a imagem — o vídeo
+           congela e o loop reemite a busca para sempre. Nada de arredondar o
+           alvo: o esquema abaixo é o mesmo do motor original. */
+        var eps = isMobile() ? 0.02 : 0.008;
+        if (Math.abs(v.currentTime - t) > eps) {
+          try { v.currentTime = t; } catch (e) {}
         }
       });
     };
 
     var frame = function () {
       if (dirty) { dirty = false; update(); }
-      scrub();
+      // Com o lightbox aberto o fundo está coberto: não gastar buscas de
+      // vídeo (no celular isso disputava GPU com o zoom da imagem).
+      if (!window.__qtScrubPaused) scrub();
       window.requestAnimationFrame(frame);
     };
 
