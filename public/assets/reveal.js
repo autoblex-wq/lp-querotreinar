@@ -80,8 +80,30 @@
     { sel: ".final-cta .actions .btn", preset: "text", delay: 150 },
   ];
 
-  var HERO = ".lp-hero .lp-logo, .lp-hero h2, .lp-hero > .lp-panel > p, " +
-             ".lp-hero .lp-actions .btn, .lp-shot-notebook, .lp-shot-phone";
+  /* Movimento ligado à rolagem (parallax). Quem deriva é o CONTÊINER; os
+     elementos de dentro continuam com a emergência de entrada — como são
+     alvos diferentes, as duas animações convivem sem disputar propriedade.
+     Profundidades diferentes (amplitude) dão a sensação de camadas sobre a
+     cena de massinha. Fora daqui: o herói (tem entrada própria), a Gestão
+     (o painel é preso/sticky) e a placa "Teste grátis" (já é centralizada
+     por transform). */
+  var PARALLAX = [
+    { sel: ".lp-band .lp-media", amp: 70 },
+    { sel: ".lp-band .lp-copy", amp: 34 },
+    { sel: ".lp-desafios-card", amp: 84 },
+    { sel: ".lp-desafios-aluno", amp: 60 },
+    { sel: ".lp-desafios-phones", amp: 96 },
+    { sel: ".lp-hero .lp-screenshots", amp: 54 },
+    { sel: "#nutri-ia .lp-ia-video", amp: 56 },
+    { sel: "#nutri-ia .lp-aluno-shot", amp: 64 },
+    { sel: "#nutri-ia .lp-aluno .lp-copy", amp: 30 },
+    { sel: "#more .lp-recursos-head", amp: 34 },
+    { sel: "#more ul", amp: 46 },
+    { sel: "#themes .colagem", amp: 58 },
+    { sel: "#themes .wizard", amp: 44 },
+    { sel: ".final-cta .convite-logo", amp: 40 },
+  ];
+  var ampScale = isMobile ? 0.45 : 1; // no celular, um movimento mais discreto
 
   var hide = function (el) {
     el.style.opacity = "0";
@@ -161,5 +183,25 @@
     document.addEventListener("DOMContentLoaded", heroIn, { once: true });
   } else {
     heroIn();
+  }
+
+  /* Parallax: a posição de cada contêiner é amarrada ao progresso da própria
+     passagem pela tela — os limiares padrão do onScroll já cobrem de "entrando
+     por baixo" até "saindo por cima". No desktop um amortecimento leve deixa o
+     movimento sedoso; no celular vai 1:1, que não deixa trabalho residual
+     depois que o dedo para. */
+  var onScroll = A.onScroll;
+  if (typeof onScroll === "function") {
+    PARALLAX.forEach(function (group) {
+      var amp = Math.round(group.amp * ampScale);
+      Array.prototype.forEach.call(document.querySelectorAll(group.sel), function (el) {
+        if (el.closest("#gestao")) return; // painel preso: não deriva
+        animate(el, {
+          translateY: [amp, -amp],
+          ease: "linear",
+          autoplay: onScroll({ target: el, sync: isMobile ? true : 0.8 }),
+        });
+      });
+    });
   }
 })();
