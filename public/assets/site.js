@@ -234,11 +234,17 @@
         it.current += (it.target - it.current) * 0.2;
         var t = clamp(it.current, 0, 0.999) * (v.duration || 1);
         // Encaixa no grid de quadros (24 fps): buscas sub-quadro são inúteis
-        // e caras — no máximo uma busca por quadro novo.
+        // e caras — no máximo uma busca por quadro novo. A tolerância precisa
+        // ser MENOR que a duração de um quadro (0,0417s), senão a animação
+        // só atualiza a cada 2 quadros e perde fluidez.
         t = Math.round(t * 24) / 24;
-        var eps = isMobile() ? 0.042 : 0.02;
-        if (Math.abs(v.currentTime - t) > eps) {
-          try { v.currentTime = t; } catch (e) {}
+        if (Math.abs(v.currentTime - t) > 0.02) {
+          try {
+            // fastSeek (iOS/Firefox) é mais rápido; nos clipes mobile
+            // all-intra todo quadro é keyframe, então é exato também.
+            if (isMobile() && v.fastSeek) v.fastSeek(t);
+            else v.currentTime = t;
+          } catch (e) {}
         }
       });
     };
