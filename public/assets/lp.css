@@ -848,3 +848,35 @@ a:hover { color: var(--lp-glow); }
     min-height: 2rem !important;
   }
 }
+
+/* ---------- Ganchos: contratar + tirar dúvidas ---------- */
+.lp-cta-par {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: clamp(28px, 5vh, 52px);
+}
+/* Botão de dúvidas: discreto ao lado do principal, legível nos dois fundos. */
+.btn-duvida {
+  background: color-mix(in srgb, #ffffff 10%, transparent);
+  border: 1px solid color-mix(in srgb, #ffffff 26%, transparent);
+  color: var(--lp-white);
+}
+.btn-duvida:hover {
+  background: color-mix(in srgb, #ffffff 18%, transparent);
+  color: var(--lp-white);
+}
+.lp-striped-light .btn-duvida,
+.lp-static .btn-duvida,
+#themes .btn-duvida {
+  background: rgba(29, 29, 31, 0.05);
+  border-color: rgba(29, 29, 31, 0.3);
+  color: #1d1d1f;
+}
+.lp-striped-light .btn-duvida:hover,
+.lp-static .btn-duvida:hover,
+#themes .btn-duvida:hover {
+  background: rgba(29, 29, 31, 0.1);
+  color: #1d1d1f;
+}
