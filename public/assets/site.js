@@ -279,6 +279,8 @@
     };
 
     routeButtons.forEach(function (b, i) {
+      // Âncoras navegam sozinhas (as seções fora da animação têm id próprio).
+      if (b.tagName === "A") return;
       b.addEventListener("click", function () {
         var it = items[i];
         if (!it) return;

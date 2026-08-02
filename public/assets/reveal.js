@@ -93,7 +93,6 @@
     { sel: ".lp-desafios-card", amp: 84 },
     { sel: ".lp-desafios-aluno", amp: 60 },
     { sel: ".lp-desafios-phones", amp: 96 },
-    { sel: ".lp-hero .lp-screenshots", amp: 54 },
     { sel: "#nutri-ia .lp-ia-video", amp: 56 },
     { sel: "#nutri-ia .lp-aluno-shot", amp: 64 },
     { sel: "#nutri-ia .lp-aluno .lp-copy", amp: 30 },
@@ -153,14 +152,10 @@
      das revelações (o estado inicial já veio do CSS). */
   var heroIn = function () {
     var tl = createTimeline({ defaults: { ease: "outExpo" } });
-    tl.add(".lp-hero .lp-logo", {
-      opacity: [0, 1], scale: [0.9, 1], translateY: [14, 0],
+    tl.add(".lp-hero h2", {
+      opacity: [0, 1], translateY: [26, 0],
       duration: Math.round(900 * speed),
     })
-      .add(".lp-hero h2", {
-        opacity: [0, 1], translateY: [26, 0],
-        duration: Math.round(820 * speed),
-      }, "-=560")
       .add(".lp-hero > .lp-panel > p", {
         opacity: [0, 1], translateY: [18, 0],
         duration: Math.round(700 * speed),
@@ -169,14 +164,11 @@
         opacity: [0, 1], translateY: [16, 0],
         duration: Math.round(640 * speed), delay: stagger(90),
       }, "-=440")
-      .add(".lp-shot-notebook", {
-        opacity: [0, 1], translateY: [46, 0], scale: [0.955, 1],
-        duration: Math.round(1100 * speed),
-      }, "-=520")
-      .add(".lp-shot-phone", {
-        opacity: [0, 1], translateY: [56, 0], scale: [0.94, 1],
-        duration: Math.round(1000 * speed),
-      }, "-=880");
+      .add(".lp-shot-notebook, .lp-shot-phone", {
+        opacity: [0, 1],
+        duration: Math.round(900 * speed),
+        delay: stagger(120),
+      }, "-=420");
   };
 
   if (document.readyState === "loading") {
@@ -184,6 +176,32 @@
   } else {
     heroIn();
   }
+
+  /* Aparelhos do herói: enquanto o vídeo entra na academia, o conjunto se
+     APROXIMA (cresce) e depois se AFASTA (diminui). O progresso vem da faixa
+     do herói, não do próprio elemento — ele fica preso no palco e não teria
+     passagem própria pela tela. */
+  var heroDevices = function () {
+    var alvo = document.querySelector("#inicio");
+    var shots = document.querySelector(".lp-hero-stage .lp-screenshots");
+    if (!alvo || !shots || typeof A.onScroll !== "function") return;
+    animate(shots, {
+      /* A faixa começa no topo da página, então o trecho inicial da curva
+         nunca é alcançado: o pico fica em 55% para cair dentro da parte
+         visível (a rolagem cobre de ~25% a 100% do progresso). */
+      scale: [
+        { from: isMobile ? 0.72 : 0.62, to: isMobile ? 1.02 : 1.12, duration: 55 },
+        { to: isMobile ? 0.82 : 0.78, duration: 45 },
+      ],
+      translateY: [
+        { from: 60, to: 0, duration: 55 },
+        { to: -60, duration: 45 },
+      ],
+      ease: "linear",
+      autoplay: A.onScroll({ target: alvo, sync: isMobile ? true : 0.85 }),
+    });
+  };
+  heroDevices();
 
   /* Parallax: a posição de cada contêiner é amarrada ao progresso da própria
      passagem pela tela — os limiares padrão do onScroll já cobrem de "entrando
@@ -195,7 +213,6 @@
     PARALLAX.forEach(function (group) {
       var amp = Math.round(group.amp * ampScale);
       Array.prototype.forEach.call(document.querySelectorAll(group.sel), function (el) {
-        if (el.closest("#gestao")) return; // painel preso: não deriva
         animate(el, {
           translateY: [amp, -amp],
           ease: "linear",

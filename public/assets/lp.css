@@ -753,3 +753,56 @@ a:hover { color: var(--lp-glow); }
 .qt-anim .lp-hero .lp-actions .btn,
 .qt-anim .lp-shot-notebook,
 .qt-anim .lp-shot-phone { opacity: 0; }
+
+/* ---------- Herói com o vídeo novo ----------
+   A faixa é alta para o vídeo (8 s) percorrer com folga; o texto ocupa a
+   primeira tela e os aparelhos ficam num palco fixo, aproximando e depois
+   afastando enquanto a câmera entra na academia. */
+#inicio { min-height: 300vh; padding-top: 0; }
+.lp-hero { padding-top: 16vh; }
+.lp-hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.lp-hero-stage .lp-screenshots {
+  width: min(1000px, 92vw);
+  margin: 0;
+  padding-right: clamp(40px, 9vw, 120px);
+  will-change: transform;
+}
+@media (hover: none) and (pointer: coarse), (max-width: 860px) {
+  #inicio { min-height: 260vh; }
+  .lp-hero-stage .lp-screenshots { width: 94vw; padding-right: 22px; }
+}
+
+/* O vídeo novo já é escurecido na origem: scrim mais leve. */
+.scroll-scrub__scrim { background: rgba(0, 0, 0, 0.3); }
+
+/* ---------- Conteúdo depois do herói (temporário: fundo listrado) ---------- */
+.lp-striped {
+  position: relative;
+  z-index: 20;
+  background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181818 36px 72px);
+  padding: 8vh 0 10vh;
+}
+/* Sem vídeo por trás, estas faixas não precisam mais do espaço de rolagem
+   extra nem do painel preso. */
+.lp-striped .lp-band { padding: 6vh 0; min-height: 0 !important; }
+.lp-striped .lp-band-desafios { padding-bottom: 6vh; }
+.lp-striped .lp-desafios-card { padding-top: 0; }
+.lp-striped .lp-desafios-aluno { margin-top: 8vh; }
+.lp-striped .lp-desafios-phones { margin-top: 8vh; }
+.lp-striped .lp-gestao-pin {
+  position: static;
+  min-height: 0;
+  display: block;
+}
+.lp-striped .lp-band-gestao .lp-copy { margin-top: 0 !important; }
+@media (min-width: 761px) {
+  .lp-striped .lp-band-gestao .lp-media-cutout img { margin-top: 0; margin-left: 0; width: 100%; }
+}

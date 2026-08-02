@@ -19,7 +19,7 @@ try {
 } catch (e) {}
 </script>
 <link rel="stylesheet" href="assets/scroll-scrub.css"/>
-<link rel="stylesheet" href="assets/lp.css?v=23"/>
+<link rel="stylesheet" href="assets/lp.css?v=24"/>
 <title>Quero Treinar — Saúde manda em tudo</title>
 <meta name="description" content="O app de treino e dieta com a sua marca. Do primeiro treino ao pagamento. Para Personal Trainers e Nutricionistas."/>
 <meta name="keywords" content="app de treino,app de dieta,personal trainer,nutricionista,treino com vídeo,dieta TACO,anamnese,gamificação,white label,app com a sua marca,pagamentos,PIX,acompanhamento"/>
@@ -34,26 +34,22 @@ try {
 <body>
 <main>
 
-<!-- A página inteira rola sobre a animação: os 4 vídeos de massinha
-     crossfadam e avançam conforme o scroll (motor em assets/site.js). -->
+<!-- Herói: o vídeo da academia avança conforme a rolagem (motor em
+     assets/site.js). O conteúdo seguinte vem depois, em fundo próprio. -->
 <section class="scroll-scrub" style="--ss-accent:#a6be7c;--ss-bg:#05050b;--ss-ink:#ffffff;--ss-muted:#b3b3b3;--ss-scrim:#05050b">
   <div class="scroll-scrub__stage">
     <div aria-hidden="true" class="scroll-scrub__media">
-      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap1-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" fetchpriority="high" loading="eager" src="assets/world/cap1-poster.jpg"/></picture></figure>
-      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap2-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap2-poster.jpg"/></picture></figure>
-      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap3-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap3-poster.jpg"/></picture></figure>
-      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap4-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap4-poster.jpg"/></picture></figure>
-      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/cap4-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" loading="lazy" src="assets/world/cap4-poster.jpg"/></picture></figure>
+      <figure class="scroll-scrub__layer scroll-scrub__layer--scene" data-scroll-scrub-layer style="--ss-mobile-position:50% 50%;--ss-object-position:50% 50%"><picture class="scroll-scrub__picture"><source media="(hover: none) and (pointer: coarse), (max-width: 860px)" srcset="assets/world/hero-mobile-poster.jpg"/><img alt="" class="scroll-scrub__poster" decoding="async" fetchpriority="high" loading="eager" src="assets/world/hero-poster.jpg"/></picture></figure>
     </div>
     <div aria-hidden="true" class="scroll-scrub__scrim"></div>
   </div>
   <div aria-hidden="true" class="scroll-scrub__progress"><span></span></div>
   <nav aria-label="Seções" class="scroll-scrub__route">
-    <button aria-current="step" class="scroll-scrub__route-button" type="button"><span>Início</span></button>
-    <button class="scroll-scrub__route-button" type="button"><span>Treinos</span></button>
-    <button class="scroll-scrub__route-button" type="button"><span>Nutrição</span></button>
-    <button class="scroll-scrub__route-button" type="button"><span>Desafios</span></button>
-    <button class="scroll-scrub__route-button" type="button"><span>Gestão</span></button>
+    <a href="#inicio" class="scroll-scrub__route-button" aria-current="step"><span>Início</span></a>
+    <a href="#treinos" class="scroll-scrub__route-button"><span>Treinos</span></a>
+    <a href="#nutricao" class="scroll-scrub__route-button"><span>Nutrição</span></a>
+    <a href="#desafios" class="scroll-scrub__route-button"><span>Desafios</span></a>
+    <a href="#gestao" class="scroll-scrub__route-button"><span>Gestão</span></a>
   </nav>
   <div class="scroll-scrub__story">
 
@@ -61,23 +57,31 @@ try {
     <div class="lp-band" data-scroll-scrub-band id="inicio">
       <header class="lp-container lp-hero">
         <div class="lp-panel">
-          <img class="lp-logo" src="images/logo-quero-treinar.webp" alt="Quero Treinar"/>
           <h2><span class="f-hand">Saúde</span> manda em tudo.</h2>
           <p><span class="f-hand">Pense em treinar,</span> deixe os dados com a gente!</p>
           <div class="lp-actions">
             <a class="btn btn-primary" href="https://wa.me/5547999995954?text=Ol%C3%A1!%20Quero%20solicitar%20um%20teste%20gratuito%20do%20app%20Quero%20Treinar." target="_blank" rel="noopener noreferrer">Começar teste grátis</a>
             <a class="btn btn-secondary" href="#more">Ver recursos</a>
           </div>
-          <div class="lp-screenshots">
-            <img class="lp-shot-notebook" fetchpriority="high" decoding="async" src="images/hero-notebook.webp" alt="Painel do Quero Treinar aberto num MacBook"/>
-            <img class="lp-shot-phone" fetchpriority="high" decoding="async" src="images/hero-phone.webp" alt="App do aluno Quero Treinar num celular"/>
-          </div>
         </div>
       </header>
+      <!-- Palco fixo: os aparelhos ficam centrados enquanto o vídeo roda,
+           aproximando (crescem) e depois afastando (diminuem). -->
+      <div class="lp-hero-stage">
+        <div class="lp-screenshots">
+            <img class="lp-shot-notebook" fetchpriority="high" decoding="async" src="images/hero-notebook.webp" alt="Painel do Quero Treinar aberto num MacBook"/>
+          <img class="lp-shot-phone" fetchpriority="high" decoding="async" src="images/hero-phone.webp" alt="App do aluno Quero Treinar num celular"/>
+        </div>
+      </div>
     </div>
 
-    <!-- Faixa 2 (vídeo: treino) — Montagem de treinos + voz -->
-    <div class="lp-band" data-scroll-scrub-band id="treinos">
+  </div>
+</section>
+
+<!-- Conteúdo depois do herói, por enquanto sobre o fundo listrado -->
+<div class="lp-striped">
+    <!-- Montagem de treinos -->
+    <div class="lp-band" id="treinos">
       <section class="lp-container" aria-label="Montagem de treinos">
         <div class="lp-panel">
           <div class="lp-feature-row">
@@ -106,8 +110,8 @@ try {
       </section>
     </div>
 
-    <!-- Faixa 3 (vídeo: cozinha) — Nutricionista -->
-    <div class="lp-band" data-scroll-scrub-band id="nutricao">
+    <!-- Para Nutricionistas -->
+    <div class="lp-band" id="nutricao">
       <section class="lp-container" aria-label="Para Nutricionistas">
         <div class="lp-panel lp-nutri-grupo">
           <h2 class="lp-section-title"><span class="f-hand">Ei, Nutricionista,</span> tem para você também!</h2>
@@ -132,8 +136,8 @@ try {
       </section>
     </div>
 
-    <!-- Faixa 4 (vídeo: arena de desafios → pódio) -->
-    <div class="lp-band lp-band-desafios" data-scroll-scrub-band id="desafios">
+    <!-- Desafios -->
+    <div class="lp-band lp-band-desafios" id="desafios">
       <section class="lp-container" aria-label="Desafios">
         <div class="lp-desafios-card">
           <img loading="lazy" decoding="async" src="images/desafios-card.webp" alt="Desafios: crie desafios gamificados, inclua alunos ou compartilhe o código"/>
@@ -149,9 +153,8 @@ try {
       </section>
     </div>
 
-    <!-- Faixa 5 (vídeo: profissional no painel de controle) — Gestão.
-         O conteúdo fica fixo (sticky) enquanto o vídeo toca até o último frame. -->
-    <div class="lp-band lp-band-gestao" data-scroll-scrub-band id="gestao">
+    <!-- Gestão -->
+    <div class="lp-band lp-band-gestao" id="gestao">
       <div class="lp-gestao-pin">
         <section class="lp-container" aria-label="Gestão">
           <div class="lp-panel">
@@ -167,8 +170,7 @@ try {
       </div>
     </div>
 
-  </div>
-</section>
+</div>
 
 <!-- Fluxo normal do site após a animação (copiado de lp.querotreinar.com) -->
 <section id="nutri-ia" class="lp-static">
@@ -404,15 +406,11 @@ try {
    metade final do cap3 — o voo de chegada à arena terminando no pódio; Gestão
    parte do pódio (início do cap4) até o painel de controle. */
 window.QT_SCENES = [
-  { clip: "assets/world/cap1.mp4", mobileClip: "assets/world/cap1-mobile.mp4", linger: 0.25 },
-  { clip: "assets/world/cap2.mp4", mobileClip: "assets/world/cap2-mobile.mp4", linger: 0.2 },
-  { clip: "assets/world/cap3.mp4", mobileClip: "assets/world/cap3-mobile.mp4", linger: 0.2, from: 0, to: 0.55 },
-  { clip: "assets/world/cap3.mp4", mobileClip: "assets/world/cap3-mobile.mp4", linger: 0, from: 0.42, to: 1.12 },
-  { clip: "assets/world/cap4.mp4", mobileClip: "assets/world/cap4-mobile.mp4", linger: 0, from: 0.15, to: 1.72 },
+  { clip: "assets/world/hero.mp4", mobileClip: "assets/world/hero-mobile.mp4", linger: 0 },
 ];
 </script>
-<script src="assets/site.js?v=7"></script>
+<script src="assets/site.js?v=8"></script>
 <script src="assets/anime.umd.min.js" defer></script>
-<script src="assets/reveal.js?v=3" defer></script>
+<script src="assets/reveal.js?v=5" defer></script>
 </body>
 </html>
