@@ -45,12 +45,20 @@
     plaque: { y: 38, scale: 0.9, duration: 1000, ease: "outExpo" },
     // Itens de grade (recursos): entrada curta, em cascata.
     card: { y: 18, scale: null, duration: 560, ease: "outCubic" },
+    // Só aparecer (quem já tem movimento próprio pelo scroll).
+    fade: { y: 0, scale: null, duration: 800, ease: "outCubic" },
   };
 
   /* Cada grupo é um seletor + preset. Com "children", o gatilho é o
      contêiner e os filhos entram em cascata (stagger). */
   var GROUPS = [
-    // --- faixas que rolam sobre a animação ---
+    // --- herói (fica abaixo da primeira tela, que mostra só o vídeo) ---
+    { sel: ".lp-hero h2", preset: "title" },
+    { sel: ".lp-hero > .lp-panel > p", preset: "text", delay: 90 },
+    { sel: ".lp-hero .lp-actions", children: ".btn", preset: "text", stagger: 90 },
+    { sel: ".lp-hero-stage", children: "img", preset: "fade", stagger: 140 },
+
+    // --- faixas de conteúdo ---
     { sel: ".lp-band .lp-copy h3", preset: "title" },
     { sel: ".lp-band .lp-copy p", preset: "text", delay: 90 },
     { sel: ".lp-band .lp-media video, .lp-band .lp-media img", preset: "media" },
@@ -148,35 +156,6 @@
     });
   });
 
-  /* Herói: entrada orquestrada assim que a página abre, na mesma cadência
-     das revelações (o estado inicial já veio do CSS). */
-  var heroIn = function () {
-    var tl = createTimeline({ defaults: { ease: "outExpo" } });
-    tl.add(".lp-hero h2", {
-      opacity: [0, 1], translateY: [26, 0],
-      duration: Math.round(900 * speed),
-    })
-      .add(".lp-hero > .lp-panel > p", {
-        opacity: [0, 1], translateY: [18, 0],
-        duration: Math.round(700 * speed),
-      }, "-=520")
-      .add(".lp-hero .lp-actions .btn", {
-        opacity: [0, 1], translateY: [16, 0],
-        duration: Math.round(640 * speed), delay: stagger(90),
-      }, "-=440")
-      .add(".lp-shot-notebook, .lp-shot-phone", {
-        opacity: [0, 1],
-        duration: Math.round(900 * speed),
-        delay: stagger(120),
-      }, "-=420");
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", heroIn, { once: true });
-  } else {
-    heroIn();
-  }
-
   /* Aparelhos do herói: enquanto o vídeo entra na academia, o conjunto se
      APROXIMA (cresce) e depois se AFASTA (diminui). O progresso vem da faixa
      do herói, não do próprio elemento — ele fica preso no palco e não teria
@@ -190,12 +169,14 @@
          nunca é alcançado: o pico fica em 55% para cair dentro da parte
          visível (a rolagem cobre de ~25% a 100% do progresso). */
       scale: [
-        { from: isMobile ? 0.72 : 0.62, to: isMobile ? 1.02 : 1.12, duration: 55 },
-        { to: isMobile ? 0.82 : 0.78, duration: 45 },
+        { from: isMobile ? 0.5 : 0.42, to: isMobile ? 1.0 : 1.1, duration: 52 },
+        { to: isMobile ? 0.78 : 0.74, duration: 26 },
+        { to: isMobile ? 0.78 : 0.74, duration: 22 },
       ],
       translateY: [
-        { from: 60, to: 0, duration: 55 },
-        { to: -60, duration: 45 },
+        { from: 70, to: 0, duration: 52 },
+        { to: -30, duration: 26 },
+        { to: -30, duration: 22 },
       ],
       ease: "linear",
       autoplay: A.onScroll({ target: alvo, sync: isMobile ? true : 0.85 }),

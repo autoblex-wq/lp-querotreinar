@@ -758,7 +758,7 @@ a:hover { color: var(--lp-glow); }
    A faixa é alta para o vídeo (8 s) percorrer com folga; o texto ocupa a
    primeira tela e os aparelhos ficam num palco fixo, aproximando e depois
    afastando enquanto a câmera entra na academia. */
-#inicio { min-height: 300vh; padding-top: 0; }
+#inicio { padding-top: 0; }
 .lp-hero { padding-top: 16vh; }
 .lp-hero-stage {
   position: sticky;
@@ -776,33 +776,56 @@ a:hover { color: var(--lp-glow); }
   will-change: transform;
 }
 @media (hover: none) and (pointer: coarse), (max-width: 860px) {
-  #inicio { min-height: 260vh; }
+  .lp-hero-stage-wrap { height: 140vh; margin-top: 78vh; }
   .lp-hero-stage .lp-screenshots { width: 94vw; padding-right: 22px; }
 }
 
 /* O vídeo novo já é escurecido na origem: scrim mais leve. */
 .scroll-scrub__scrim { background: rgba(0, 0, 0, 0.3); }
 
-/* ---------- Conteúdo depois do herói (temporário: fundo listrado) ---------- */
-.lp-striped {
-  position: relative;
-  z-index: 20;
+/* ---------- Herói: primeira tela só com o vídeo ---------- */
+.lp-hero-intro { height: 100vh; }
+.lp-hero { padding-top: 13vh; }
+/* Trilho alto: os aparelhos ficam presos no centro por bastante rolagem,
+   com folga generosa depois dos botões para o vídeo aparecer entre eles. */
+.lp-hero-stage-wrap { height: 165vh; margin-top: 100vh; }
+.lp-hero-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ---------- Seções depois do herói: listrado alternando claro/escuro ---------- */
+.lp-faixa { position: relative; z-index: 20; padding: 7vh 0 9vh; }
+.lp-striped-dark {
   background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181818 36px 72px);
-  padding: 8vh 0 10vh;
 }
-/* Sem vídeo por trás, estas faixas não precisam mais do espaço de rolagem
-   extra nem do painel preso. */
-.lp-striped .lp-band { padding: 6vh 0; min-height: 0 !important; }
-.lp-striped .lp-band-desafios { padding-bottom: 6vh; }
-.lp-striped .lp-desafios-card { padding-top: 0; }
-.lp-striped .lp-desafios-aluno { margin-top: 8vh; }
-.lp-striped .lp-desafios-phones { margin-top: 8vh; }
-.lp-striped .lp-gestao-pin {
-  position: static;
-  min-height: 0;
-  display: block;
+.lp-striped-light {
+  background: #ececee repeating-linear-gradient(45deg, #f1f1f2 0 36px, #e4e4e6 36px 72px);
 }
-.lp-striped .lp-band-gestao .lp-copy { margin-top: 0 !important; }
+/* No listrado claro o texto inverte (era branco por causa do vídeo). */
+.lp-striped-light .lp-band { text-shadow: none; }
+.lp-striped-light .lp-copy h3,
+.lp-striped-light .lp-section-title,
+.lp-striped-light .lp-copy h2 { color: #1d1d1f; }
+.lp-striped-light .lp-copy p,
+.lp-striped-light .lp-desafios-aluno p { color: #3f3f42; }
+.lp-striped-light .lp-lettering { color: #1d1d1f !important; }
+.lp-striped-light .lp-section-title .accent { color: #65783e; }
+
+/* Sem vídeo por trás, estas faixas não precisam do espaço extra de rolagem
+   nem do painel preso. */
+.lp-faixa .lp-band { padding: 4vh 0; min-height: 0 !important; }
+.lp-faixa .lp-band-desafios { padding-bottom: 4vh; }
+.lp-faixa .lp-desafios-card { padding-top: 0; }
+.lp-faixa .lp-desafios-aluno { margin-top: 7vh; }
+.lp-faixa .lp-desafios-phones { margin-top: 7vh; }
+.lp-faixa .lp-gestao-pin { position: static; min-height: 0; display: block; }
+.lp-faixa .lp-band-gestao .lp-copy { margin-top: 0 !important; }
 @media (min-width: 761px) {
-  .lp-striped .lp-band-gestao .lp-media-cutout img { margin-top: 0; margin-left: 0; width: 100%; }
+  .lp-faixa .lp-band-gestao .lp-media-cutout img { margin-top: 0; margin-left: 0; width: 100%; }
 }

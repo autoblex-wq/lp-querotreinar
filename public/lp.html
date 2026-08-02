@@ -19,7 +19,7 @@ try {
 } catch (e) {}
 </script>
 <link rel="stylesheet" href="assets/scroll-scrub.css"/>
-<link rel="stylesheet" href="assets/lp.css?v=24"/>
+<link rel="stylesheet" href="assets/lp.css?v=27"/>
 <title>Quero Treinar — Saúde manda em tudo</title>
 <meta name="description" content="O app de treino e dieta com a sua marca. Do primeiro treino ao pagamento. Para Personal Trainers e Nutricionistas."/>
 <meta name="keywords" content="app de treino,app de dieta,personal trainer,nutricionista,treino com vídeo,dieta TACO,anamnese,gamificação,white label,app com a sua marca,pagamentos,PIX,acompanhamento"/>
@@ -55,6 +55,8 @@ try {
 
     <!-- Faixa 1 (vídeo: academia) — Herói -->
     <div class="lp-band" data-scroll-scrub-band id="inicio">
+      <!-- Primeira tela: só o vídeo (o logo da parede é a abertura). -->
+      <div class="lp-hero-intro" aria-hidden="true"></div>
       <header class="lp-container lp-hero">
         <div class="lp-panel">
           <h2><span class="f-hand">Saúde</span> manda em tudo.</h2>
@@ -66,11 +68,13 @@ try {
         </div>
       </header>
       <!-- Palco fixo: os aparelhos ficam centrados enquanto o vídeo roda,
-           aproximando (crescem) e depois afastando (diminuem). -->
-      <div class="lp-hero-stage">
-        <div class="lp-screenshots">
+           partindo pequenos, aproximando (crescem) e afastando de novo. -->
+      <div class="lp-hero-stage-wrap">
+        <div class="lp-hero-stage">
+          <div class="lp-screenshots">
             <img class="lp-shot-notebook" fetchpriority="high" decoding="async" src="images/hero-notebook.webp" alt="Painel do Quero Treinar aberto num MacBook"/>
-          <img class="lp-shot-phone" fetchpriority="high" decoding="async" src="images/hero-phone.webp" alt="App do aluno Quero Treinar num celular"/>
+            <img class="lp-shot-phone" fetchpriority="high" decoding="async" src="images/hero-phone.webp" alt="App do aluno Quero Treinar num celular"/>
+          </div>
         </div>
       </div>
     </div>
@@ -79,8 +83,8 @@ try {
 </section>
 
 <!-- Conteúdo depois do herói, por enquanto sobre o fundo listrado -->
-<div class="lp-striped">
     <!-- Montagem de treinos -->
+<section class="lp-faixa lp-striped-light">
     <div class="lp-band" id="treinos">
       <section class="lp-container" aria-label="Montagem de treinos">
         <div class="lp-panel">
@@ -109,8 +113,10 @@ try {
         </div>
       </section>
     </div>
+</section>
 
     <!-- Para Nutricionistas -->
+<section class="lp-faixa lp-striped-dark">
     <div class="lp-band" id="nutricao">
       <section class="lp-container" aria-label="Para Nutricionistas">
         <div class="lp-panel lp-nutri-grupo">
@@ -135,8 +141,10 @@ try {
         </div>
       </section>
     </div>
+</section>
 
     <!-- Desafios -->
+<section class="lp-faixa lp-striped-light">
     <div class="lp-band lp-band-desafios" id="desafios">
       <section class="lp-container" aria-label="Desafios">
         <div class="lp-desafios-card">
@@ -152,8 +160,10 @@ try {
         </div>
       </section>
     </div>
+</section>
 
     <!-- Gestão -->
+<section class="lp-faixa lp-striped-dark">
     <div class="lp-band lp-band-gestao" id="gestao">
       <div class="lp-gestao-pin">
         <section class="lp-container" aria-label="Gestão">
@@ -169,6 +179,7 @@ try {
         </section>
       </div>
     </div>
+</section>
 
 </div>
 
@@ -406,11 +417,11 @@ try {
    metade final do cap3 — o voo de chegada à arena terminando no pódio; Gestão
    parte do pódio (início do cap4) até o painel de controle. */
 window.QT_SCENES = [
-  { clip: "assets/world/hero.mp4", mobileClip: "assets/world/hero-mobile.mp4", linger: 0 },
+  { clip: "assets/world/hero.mp4", mobileClip: "assets/world/hero-mobile.mp4", linger: 0, endEarly: true },
 ];
 </script>
-<script src="assets/site.js?v=8"></script>
+<script src="assets/site.js?v=9"></script>
 <script src="assets/anime.umd.min.js" defer></script>
-<script src="assets/reveal.js?v=5" defer></script>
+<script src="assets/reveal.js?v=6" defer></script>
 </body>
 </html>

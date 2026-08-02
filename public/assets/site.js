@@ -48,7 +48,7 @@
     var items = SCENES.map(function (s, i) {
       return {
         clip: s.clip, mobileClip: s.mobileClip, linger: s.linger,
-        from: s.from, to: s.to,
+        from: s.from, to: s.to, endEarly: s.endEarly,
         textIn: s.textIn, textOut: s.textOut,
         layer: layers[i], band: bands[i],
         pin: bands[i] ? bands[i].querySelector(".scroll-scrub__chapter-pin") : null,
@@ -197,7 +197,10 @@
       var activeIdx = 0;
       items.forEach(function (it, i) {
         if (s >= it.start) activeIdx = i;
-        var h = Math.max(it.end - it.start, 1);
+        /* endEarly: o vídeo chega ao fim uma tela antes do fim da faixa,
+           então a seção seguinte entra já com o clipe terminado. */
+        var span = it.end - it.start - (it.endEarly ? vh : 0);
+        var h = Math.max(span, 1);
         var progress = clamp((s - it.start) / h);
         var eased = it.linger ? lingerEase(progress, it.linger) : progress;
         var from = it.from === undefined ? 0 : it.from;
