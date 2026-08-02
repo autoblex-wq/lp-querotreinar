@@ -829,3 +829,22 @@ a:hover { color: var(--lp-glow); }
 @media (min-width: 761px) {
   .lp-faixa .lp-band-gestao .lp-media-cutout img { margin-top: 0; margin-left: 0; width: 100%; }
 }
+
+/* ---------- Celular: enquadramento do vídeo e barra de seções ---------- */
+@media (hover: none) and (pointer: coarse), (max-width: 860px) {
+  /* O clipe de celular é vertical (720x1560): o quadro 16:9 fica inteiro e
+     centralizado — a logo aparece completa — e o resto da tela é preenchido
+     por uma cópia desfocada do próprio vídeo, em vez de barras pretas. */
+
+  /* Barra de seções inteira dentro da tela */
+  .scroll-scrub__route {
+    padding: 3px 6px;
+    gap: 0;
+  }
+  .scroll-scrub__route-button {
+    padding: 0.5rem 0.42rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.02em;
+    min-height: 2rem !important;
+  }
+}
