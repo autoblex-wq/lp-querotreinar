@@ -919,3 +919,19 @@ a:hover { color: var(--lp-glow); }
   background: rgba(255, 255, 255, 0.18);
   font-size: 22px;
 }
+
+/* Herói: botões bege com texto preto; "Sou aluno" verde musgo com texto bege */
+.lp-hero .lp-actions .btn-primary,
+.lp-hero .lp-actions .btn-duvida {
+  background: #e8dcc2;
+  border: 1px solid #e8dcc2;
+  color: #111;
+}
+.lp-hero .lp-actions .btn-primary:hover,
+.lp-hero .lp-actions .btn-duvida:hover { background: #f1e8d4; color: #111; filter: none; }
+.lp-hero .lp-actions .btn-aluno {
+  background: #556b2f;
+  border: 1px solid #556b2f;
+  color: #e8dcc2;
+}
+.lp-hero .lp-actions .btn-aluno:hover { background: #62793a; color: #f1e8d4; }
