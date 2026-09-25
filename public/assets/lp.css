@@ -880,3 +880,42 @@ a:hover { color: var(--lp-glow); }
   background: rgba(29, 29, 31, 0.1);
   color: #1d1d1f;
 }
+
+/* ---------- Atalhos "Sou aluno" ---------- */
+.scroll-scrub__route-button.lp-route-aluno { color: var(--lp-green-link); }
+.scroll-scrub__route-button.lp-route-aluno:hover { color: var(--lp-white); }
+.lp-actions-aluno { margin-top: 12px; }
+.btn-aluno {
+  color: var(--lp-white);
+  background: transparent;
+  border: 1px dashed color-mix(in srgb, #ffffff 45%, transparent);
+  padding: 10px 26px;
+  font-size: 15px;
+}
+.btn-aluno:hover { background: color-mix(in srgb, #ffffff 10%, transparent); color: var(--lp-white); }
+
+/* Card retangular antes de "Montagem de treinos" */
+.lp-aluno-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 clamp(28px, 6vh, 56px);
+  padding: 20px clamp(20px, 4vw, 36px);
+  border-radius: 18px;
+  background: linear-gradient(#93ac68, #65783e);
+  color: #fff;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.lp-aluno-card:hover { color: #fff; filter: brightness(1.08); transform: translateY(-2px); }
+.lp-aluno-card__text { font-size: clamp(18px, 2.4vw, 24px); font-weight: 600; }
+.lp-aluno-card__arrow {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 22px;
+}
