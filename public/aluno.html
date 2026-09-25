@@ -43,6 +43,12 @@ body { background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181
 .al-info li { padding-left: 28px; position: relative; color: var(--lp-silver); }
 .al-info li::before { content: "✓"; position: absolute; left: 0; color: var(--lp-green-link); font-weight: 700; }
 
+.al-grid.reverse { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); margin-top: clamp(56px, 12vh, 120px); }
+.al-tag {
+  display: inline-block; margin-bottom: 14px; padding: 5px 14px; border-radius: 40px;
+  background: #556b2f; color: #e8dcc2; font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+}
+
 .al-video video {
   width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: var(--lp-radius);
   background: #000; box-shadow: 0 18px 34px rgba(0,0,0,.45), 0 42px 90px rgba(0,0,0,.55);
@@ -66,7 +72,7 @@ body { background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181
 .al-convite small { display: block; margin-top: 14px; color: rgba(255,255,255,.8); font-size: 14px; }
 
 @media (max-width: 760px) {
-  .al-grid { grid-template-columns: 1fr; }
+  .al-grid, .al-grid.reverse { grid-template-columns: 1fr; }
   .al-video { max-width: 340px; margin: 0 auto; order: -1; }
   .al-convite { margin-left: 16px; margin-right: 16px; }
 }
@@ -98,7 +104,24 @@ body { background: #2c2c2c repeating-linear-gradient(45deg, #0f0f0f 0 36px, #181
     </ul>
   </div>
   <div class="al-video">
-    <video controls playsinline preload="metadata" poster="images/aluno-poster.jpg?v=2" aria-label="Vídeo: o app do Quero Treinar para o aluno"><source src="videos/aluno.mp4?v=2" type="video/mp4"/></video>
+    <video controls playsinline preload="metadata" poster="images/aluno-poster.jpg?v=3" aria-label="Vídeo: o app do Quero Treinar para o aluno"><source src="videos/aluno.mp4?v=3" type="video/mp4"/></video>
+  </div>
+</section>
+
+<section class="al-grid reverse" aria-label="Auxílio de IA">
+  <div class="al-video">
+    <video controls playsinline preload="metadata" poster="images/aluno-ia-poster.jpg" aria-label="Vídeo: o Auxílio de IA registrando o treino do aluno"><source src="videos/aluno-ia.mp4" type="video/mp4"/></video>
+  </div>
+  <div class="al-info">
+    <span class="al-tag">Sessão especial</span>
+    <h2>Auxílio <span class="f-hand">de IA.</span></h2>
+    <p><span class="f-hand">Você treina, a IA anota.</span> Conte o que fez do seu jeito — a IA entende e registra tudo direto no card do exercício.</p>
+    <ul>
+      <li>Fale ou escreva naturalmente: “fiz 3 séries de 12 com 20 kg”</li>
+      <li>Séries, repetições e carga preenchidas no exercício certo</li>
+      <li>Nada de ficar digitando no meio do treino</li>
+      <li>Seu profissional acompanha cada registro em tempo real</li>
+    </ul>
   </div>
 </section>
 
