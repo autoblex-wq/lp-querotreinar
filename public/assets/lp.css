@@ -935,3 +935,9 @@ a:hover { color: var(--lp-glow); }
   color: #e8dcc2;
 }
 .lp-hero .lp-actions .btn-aluno:hover { background: #62793a; color: #f1e8d4; }
+
+/* Menu e barra de progresso presentes até o fim do site: a seção da animação
+   é um contexto de empilhamento (isolation), então o menu fixo dentro dela
+   ficava abaixo das seções seguintes (z-index 20–40). Sobe a seção inteira
+   — ela não sobrepõe as seguintes; o lightbox (90) continua por cima. */
+.scroll-scrub { z-index: 50; }
